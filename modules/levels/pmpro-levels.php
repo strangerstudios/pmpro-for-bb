@@ -68,6 +68,13 @@ FLBuilder::register_module(
 								'card'  => __( 'Card Layout', 'pmpro-bb' ),
 							),
 							'default' => 'table',
+							'toggle'  => array(
+								'card' => array(
+									'tabs' => array(
+										'cards',
+									),
+								),
+							),
 						),
 						'level_display' => array(
 							'type'    => 'select',
@@ -77,6 +84,34 @@ FLBuilder::register_module(
 								'custom' => __( 'Display Only Certain Levels', 'pmpro-bb' ),
 							),
 							'default' => 'all',
+						),
+					),
+				),
+			),
+		),
+		'cards'       => array(
+			'title'    => __( 'Cards', 'pmpro-bb' ),
+			'sections' => array(
+				'display' => array(
+					'title'  => __( 'Cards', 'pmpro-bb' ),
+					'fields' => array(
+						'card_columns' => array(
+							'type'    => 'unit',
+							'label'   => __( 'Number of Columns', 'pmpro-bb' ),
+							'default' => 3,
+							'slider'  => array(
+								'min'  => 1,
+								'max'  => 6,
+								'step' => 1,
+							),
+						),
+						'equalize'     => array(
+							'type'    => 'select',
+							'label'   => __( 'Equalize Heights?', 'pmpro-bb' ),
+							'options' => array(
+								'no'  => __( 'No', 'pmpro-bb' ),
+								'yes' => __( 'Yes', 'pmpro-bb' ),
+							),
 						),
 					),
 				),

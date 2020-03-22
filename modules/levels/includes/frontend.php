@@ -29,18 +29,18 @@ $pmpro_levels = PMPRO_BB_Levels::get_levels();
 				$count = 0;
 				foreach ( $pmpro_levels as $level ) {
 					if ( isset( $current_user->membership_level->ID ) ) {
-						$current_level = ( $current_user->membership_level->ID == $level->id );
+						$current_level = ( $current_user->membership_level->ID === $level->id );
 					} else {
 						$current_level = false;
 					}
 					?>
 					<tr class="
 					<?php
-					if ( $count++ % 2 == 0 ) {
+					if ( 0 === $count++ % 2 ) {
 						?>
 						odd<?php } ?>
 					<?php
-					if ( $current_level == $level ) {
+					if ( $current_level === $level ) {
 						?>
 					active<?php } ?>">
 					<td><?php echo $current_level ? '<strong>' . esc_html( $level->name ) . '</strong>' : esc_html( $level->name ); ?></td>
@@ -53,38 +53,36 @@ $pmpro_levels = PMPRO_BB_Levels::get_levels();
 						}
 							$expiration_text = pmpro_getLevelExpiration( $level );
 						if ( ! empty( $cost_text ) && ! empty( $expiration_text ) ) {
-							echo $cost_text . '<br />' . $expiration_text;
+							echo wp_kses_post( $cost_text ) . '<br />' . wp_kses_post( $expiration_text );
 						} elseif ( ! empty( $cost_text ) ) {
-							echo $cost_text;
+							echo wp_kses_post( $cost_text );
 						} elseif ( ! empty( $expiration_text ) ) {
-							echo $expiration_text;
+							echo wp_kses_post( $expiration_text );
 						}
 						?>
 					</td>
 					<td>
 						<?php if ( empty( $current_user->membership_level->ID ) ) { ?>
 						<a class="pmpro_btn pmpro_btn-select" href="<?php echo esc_url( pmpro_url( 'checkout', '?level=' . $level->id, 'https' ) ); ?>"><?php esc_html_e( 'Select', 'pmpro-bb' ); ?></a>
-					<?php } elseif ( ! $current_level ) { ?>                	
+					<?php } elseif ( ! $current_level ) { ?>
 						<a class="pmpro_btn pmpro_btn-select" href="<?php echo esc_url( pmpro_url( 'checkout', '?level=' . $level->id, 'https' ) ); ?>"><?php esc_html_e( 'Select', 'pmpro-bb' ); ?></a>
-					<?php } elseif ( $current_level ) { ?>      
-						
+					<?php } elseif ( $current_level ) { ?>
 						<?php
-							// if it's a one-time-payment level, offer a link to renew
+							// if it's a one-time-payment level, offer a link to renew.
 						if ( pmpro_isLevelExpiringSoon( $current_user->membership_level ) && $current_user->membership_level->allow_signups ) {
 							?>
 									<a class="pmpro_btn pmpro_btn-select" href="<?php echo esc_url( pmpro_url( 'checkout', '?level=' . $level->id, 'https' ) ); ?>"><?php esc_html_e( 'Renew', 'pmpro-bb' ); ?></a>
 								<?php
 						} else {
 							?>
-									<a class="pmpro_btn disabled" href="<?php echo pmpro_url( 'account' ); ?>"><?php esc_html_e( 'Your Level', 'pmpro-bb' ); ?></a>
+									<a class="pmpro_btn disabled" href="<?php echo esc_url( pmpro_url( 'account' ) ); ?>"><?php esc_html_e( 'Your Level', 'pmpro-bb' ); ?></a>
 								<?php
 						}
 						?>
-						
 					<?php } ?>
 					</td>
 				</tr>
-				<?php
+					<?php
 				}
 				?>
 			</tbody>
