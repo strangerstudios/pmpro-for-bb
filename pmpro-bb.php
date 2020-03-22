@@ -47,8 +47,12 @@ class PMPRO_BB {
 		// Register Module Scripts.
 		add_action( 'wp_head', array( $this, 'render_scripts' ) );
 		if ( class_exists( 'FLBuilder' ) && defined( 'PMPRO_DIR' ) ) {
+			// Include levels helper class.
+			require 'includes/class-pmpro-bb-levels.php';
+
+			// Include levels module.
 			require 'modules/levels/pmpro-levels.php';
-			new PMPRO_BB_Levels();
+			new PMPRO_BB_Levels_Module();
 		}
 	}
 

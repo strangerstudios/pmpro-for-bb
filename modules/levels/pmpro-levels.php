@@ -1,5 +1,5 @@
 <?php //phpcs:ignore
-class PMPRO_BB_Levels extends FLBuilderModule {
+class PMPRO_BB_Levels_Module extends FLBuilderModule {
 	/**
 	 * Class constructor.
 	 */
@@ -18,64 +18,24 @@ class PMPRO_BB_Levels extends FLBuilderModule {
 			)
 		);
 	}
-
-	/**
-	 * Get levels for Paid Memberships Pro.
-	 *
-	 * @return array Paid Memberships Pro levels.
-	 */
-	public static function get_levels() {
-		$pmpro_levels      = pmpro_getAllLevels( false, true );
-		$pmpro_level_order = pmpro_getOption( 'level_order' );
-
-		if ( ! empty( $pmpro_level_order ) ) {
-			$level_order = explode( ',', $pmpro_level_order );
-
-			// Reorder array.
-			$reordered_levels = array();
-			foreach ( $level_order as $level_id ) {
-				foreach ( $pmpro_levels as $key => $level ) {
-					if ( $level_id === $level->id ) {
-						$reordered_levels[] = $pmpro_levels[ $key ];
-					}
-				}
-			}
-
-			$pmpro_levels = $reordered_levels;
-		}
-
-		$pmpro_levels = apply_filters( 'pmpro_levels_array', $pmpro_levels );
-		return $pmpro_levels;
-	}
+}
+$pmpro_bb_levels         = PMPRO_BB_Levels::get_levels();
+$pmpro_bb_levels_options = array();
+foreach ( $pmpro_bb_levels as $pmpro_level ) {
+	$pmpro_bb_levels_options[ $pmpro_level->id ] = $pmpro_level->name;
 }
 /**
  * Register the module and its form settings.
  */
 FLBuilder::register_module(
-	'PMPRO_BB_Levels',
+	'PMPRO_BB_Levels_Module',
 	array(
-		'display'     => array(
+		'display'        => array(
 			'title'    => __( 'Display', 'pmpro-bb' ),
 			'sections' => array(
 				'display' => array(
 					'title'  => __( 'Display', 'pmpro-bb' ),
 					'fields' => array(
-						'display'       => array(
-							'type'    => 'select',
-							'label'   => __( 'Layout', 'pmpro-bb' ),
-							'options' => array(
-								'table' => __( 'Table Layout', 'pmpro-bb' ),
-								'card'  => __( 'Card Layout', 'pmpro-bb' ),
-							),
-							'default' => 'table',
-							'toggle'  => array(
-								'card' => array(
-									'tabs' => array(
-										'cards',
-									),
-								),
-							),
-						),
 						'level_display' => array(
 							'type'    => 'select',
 							'label'   => __( 'Level Display', 'pmpro-bb' ),
@@ -84,563 +44,270 @@ FLBuilder::register_module(
 								'custom' => __( 'Display Only Certain Levels', 'pmpro-bb' ),
 							),
 							'default' => 'all',
-						),
-					),
-				),
-			),
-		),
-		'cards'       => array(
-			'title'    => __( 'Cards', 'pmpro-bb' ),
-			'sections' => array(
-				'display' => array(
-					'title'  => __( 'Cards', 'pmpro-bb' ),
-					'fields' => array(
-						'card_columns' => array(
-							'type'    => 'unit',
-							'label'   => __( 'Number of Columns', 'pmpro-bb' ),
-							'default' => 3,
-							'slider'  => array(
-								'min'  => 1,
-								'max'  => 6,
-								'step' => 1,
-							),
-						),
-						'equalize'     => array(
-							'type'    => 'select',
-							'label'   => __( 'Equalize Heights?', 'pmpro-bb' ),
-							'options' => array(
-								'no'  => __( 'No', 'pmpro-bb' ),
-								'yes' => __( 'Yes', 'pmpro-bb' ),
-							),
-						),
-					),
-				),
-			),
-		),
-		'icon'        => array(
-			'title'    => __( 'Photo/Icon', 'pmpro-bb' ),
-			'sections' => array(
-				'icon' => array(
-					'title'  => __( 'Coupon Photo/Icon', 'pmpro-bb' ),
-					'fields' => array(
-						'photo_icon'        => array(
-							'type'    => 'select',
-							'default' => 'none',
-							'label'   => __( 'Show a Coupon Icon/Photo', 'pmpro-bb' ),
-							'options' => array(
-								'photo' => __( 'Photo', 'pmpro-bb' ),
-								'icon'  => __( 'Icon', 'pmpro-bb' ),
-								'none'  => __( 'None', 'pmpro-bb' ),
-							),
 							'toggle'  => array(
-								'photo' => array(
+								'custom' => array(
 									'fields' => array(
-										'top_photo',
-										'top_photo_align',
-										'top_photo_link',
-										'top_photo_display',
-										'top_photo_padding',
-										'top_photo_margin',
-										'top_photo_border',
-									),
-								),
-								'icon'  => array(
-									'fields' => array(
-										'icon_size',
-										'icon',
-										'icon_align',
-										'icon_color',
-										'icon_display',
-										'icon_padding',
-										'icon_margin',
+										'levels',
 									),
 								),
 							),
 						),
-						'top_photo'         => array(
-							'type'        => 'photo',
-							'label'       => __( 'Photo', 'pmpro-bb' ),
-							'show_remove' => true,
+						'levels'        => array(
+							'type'         => 'select',
+							'label'        => __( 'Select Levels to Display', 'pmpro-bb' ),
+							'options'      => $pmpro_bb_levels_options,
+							'multi-select' => true,
+							'help'         => __( 'CTRL+Click or Command+Click to select certain levels', 'pmpro-bb' ),
 						),
-						'top_photo_link'    => array(
-							'type'          => 'link',
-							'label'         => __( 'Photo Link', 'pmpro-bb' ),
-							'responsive'    => true,
-							'show_target'   => true,
-							'show_nofollow' => true,
-							'preview'       => array(),
-						),
-						'top_photo_align'   => array(
-							'type'    => 'align',
-							'label'   => __( 'Photo Alignment', 'pmpro-bb' ),
-							'default' => 'center',
+					),
+				),
+			),
+		),
+		'table_settings' => array(
+			'title'    => __( 'Table Settings', 'pmpro-bb' ),
+			'sections' => array(
+				'table'        => array(
+					'title'  => '',
+					'fields' => array(
+						'table_border' => array(
+							'type'    => 'border',
+							'label'   => __( 'Table Border', 'pmpro-bb' ),
 							'preview' => array(
 								'type'  => 'css',
 								'rules' => array(
 									array(
-										'selector' => '.bbvm-advanced-coupon-top-photo',
-										'property' => 'text-align',
-									),
-								),
-							),
-
-						),
-						'top_photo_display' => array(
-							'type'    => 'select',
-							'default' => 'square',
-							'label'   => __( 'Photo Display', 'pmpro-bb' ),
-							'options' => array(
-								'square'  => __( 'Square/Rectangular', 'pmpro-bb' ),
-								'rounded' => __( 'Rounded', 'pmpro-bb' ),
-							),
-						),
-						'top_photo_padding' => array(
-							'type'       => 'dimension',
-							'label'      => __( 'Photo Padding', 'pmpro-bb' ),
-							'responsive' => true,
-							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => '.bbvm-advanced-coupon-top-photo',
-										'property' => 'padding',
-										'unit'     => 'px',
-									),
-								),
-							),
-						),
-						'top_photo_margin'  => array(
-							'type'       => 'dimension',
-							'label'      => __( 'Photo Margin', 'pmpro-bb' ),
-							'responsive' => true,
-							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => '.bbvm-advanced-coupon-top-photo',
-										'property' => 'margin',
-										'unit'     => 'px',
-									),
-								),
-							),
-						),
-						'top_photo_border'  => array(
-							'type'       => 'border',
-							'label'      => __( 'Photo Border', 'pmpro-bb' ),
-							'responsive' => true,
-							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => '.bbvm-advanced-coupon-top-photo img',
+										'selector' => 'table',
 										'property' => 'border',
 									),
 								),
 							),
 						),
-						'icon_size'         => array(
-							'type'    => 'unit',
-							'label'   => __( 'Icon Size', 'pmpro-bb' ),
-							'default' => 40,
-							'preview' => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => '.bbvm-advanced-coupon-icon span:before',
-										'property' => 'font-size',
-										'unit'     => 'px',
+						'table_width'  => array(
+							'type'    => 'select',
+							'label'   => __( 'Table Width', 'pmpro-bb' ),
+							'options' => array(
+								'regular' => __( 'Regular Width', 'pmpro-bb' ),
+								'full'    => __( 'Full Width', 'pmpro-bb' ),
+							),
+							'default' => 'regular',
+							'toggle'  => array(
+								'regular' => array(
+									'fields' => array(
+										'table_align',
 									),
 								),
 							),
 						),
-						'icon'              => array(
-							'type'        => 'icon',
-							'label'       => __( 'Select an Icon', 'pmpro-bb' ),
-							'show_remove' => true,
-						),
-						'icon_align'        => array(
+						'table_align'  => array(
 							'type'    => 'align',
-							'label'   => __( 'Icon Alignment', 'pmpro-bb' ),
+							'label'   => __( 'Table Alignment', 'pmpro-bb' ),
+							'values'  => array(
+								'left'   => '0 auto 0 0',
+								'center' => '0 auto',
+								'right'  => '0 0 0 auto',
+							),
+							'default' => '0 auto 0 0',
 							'preview' => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => '.bbvm-advanced-coupon-icon',
-										'property' => 'text-align',
-									),
-								),
+								'type'     => 'css',
+								'selector' => 'table',
+								'property' => 'margin',
 							),
 						),
-						'icon_color'        => array(
+					),
+				),
+				'table_header' => array(
+					'title'     => __( 'Table Header', 'pmpro-bb' ),
+					'collapsed' => true,
+					'fields'    => array(
+						'table_heading_background_color' => array(
 							'type'       => 'color',
-							'label'      => __( 'Icon Color', 'pmpro-bb' ),
-							'show_reset' => true,
+							'label'      => __( 'Table Heading Background Color', 'pmpro-bb' ),
 							'show_alpha' => true,
-							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => '.bbvm-advanced-coupon-icon span:before',
-										'property' => 'color',
-									),
-								),
-							),
-						),
-						'icon_display'      => array(
-							'type'    => 'select',
-							'default' => 'square',
-							'label'   => __( 'Icon Appearance', 'pmpro-bb' ),
-							'options' => array(
-								'square'  => __( 'Square/Rectangular', 'pmpro-bb' ),
-								'rounded' => __( 'Rounded', 'pmpro-bb' ),
-							),
-						),
-						'icon_padding'      => array(
-							'type'       => 'dimension',
-							'label'      => __( 'Icon Padding', 'pmpro-bb' ),
-							'responsive' => true,
-							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => '.bbvm-advanced-coupon-icon',
-										'property' => 'padding',
-										'unit'     => 'px',
-									),
-								),
-							),
-						),
-						'icon_margin'       => array(
-							'type'       => 'dimension',
-							'label'      => __( 'Icon Margin', 'pmpro-bb' ),
-							'responsive' => true,
-							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => '.bbvm-advanced-coupon-icon',
-										'property' => 'margin',
-										'unit'     => 'px',
-									),
-								),
-							),
-						),
-					),
-				),
-			),
-		),
-		'headline'    => array(
-			'title'    => __( 'Headline', 'pmpro-bb' ),
-			'sections' => array(
-				'headline' => array(
-					'title'  => __( 'Coupon Headline', 'pmpro-bb' ),
-					'fields' => array(
-						'enable_headline'            => array(
-							'type'    => 'select',
-							'default' => 'yes',
-							'label'   => __( 'Display a Coupon Headline', 'pmpro-bb' ),
-							'options' => array(
-								'no'  => __( 'No', 'pmpro-bb' ),
-								'yes' => __( 'Yes', 'pmpro-bb' ),
-							),
-							'toggle'  => array(
-								'yes' => array(
-									'fields' => array(
-										'coupon_headline',
-										'coupon_headline_color',
-										'coupon_headline_typography',
-										'coupon_headline_padding',
-										'coupon_headline_margin',
-									),
-								),
-							),
-						),
-						'coupon_headline'            => array(
-							'type'    => 'text',
-							'label'   => __( 'Coupon Headline', 'pmpro-bb' ),
-							'default' => __( 'Huge Discount on All Our Products', 'pmpro-bb' ),
-							'preview' => array(
-								'type'     => 'text',
-								'selector' => '.bbvm-advanced-coupon-headline',
-							),
-						),
-						'coupon_headline_color'      => array(
-							'type'       => 'color',
-							'label'      => __( 'Headline Color', 'pmpro-bb' ),
 							'show_reset' => true,
-							'default'    => 'FFFFFF',
 							'preview'    => array(
 								'type'  => 'css',
 								'rules' => array(
 									array(
-										'selector' => '.bbvm-advanced-coupon-headline',
-										'property' => 'color',
-									),
-								),
-							),
-						),
-						'coupon_headline_typography' => array(
-							'type'       => 'typography',
-							'label'      => __( 'Headline Typography', 'pmpro-bb' ),
-							'responsive' => true,
-							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => '.bbvm-advanced-coupon-headline',
-									),
-								),
-							),
-						),
-						'coupon_headline_padding'    => array(
-							'type'       => 'dimension',
-							'label'      => __( 'Headline Padding', 'pmpro-bb' ),
-							'responsive' => true,
-							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => '.bbvm-advanced-coupon-headline',
-										'property' => 'padding',
-										'unit'     => 'px',
-									),
-								),
-							),
-						),
-						'coupon_headline_margin'     => array(
-							'type'       => 'dimension',
-							'label'      => __( 'Headline Margin', 'pmpro-bb' ),
-							'responsive' => true,
-							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => '.bbvm-advanced-coupon-headline',
-										'property' => 'margin',
-										'unit'     => 'px',
-									),
-								),
-							),
-						),
-					),
-				),
-			),
-		),
-		'description' => array(
-			'title'    => __( 'Description', 'pmpro-bb' ),
-			'sections' => array(
-				'headline' => array(
-					'title'  => __( 'Coupon Description', 'pmpro-bb' ),
-					'fields' => array(
-						'enable_description'     => array(
-							'type'    => 'select',
-							'default' => 'no',
-							'label'   => __( 'Display a Coupon Description', 'pmpro-bb' ),
-							'options' => array(
-								'no'  => __( 'No', 'pmpro-bb' ),
-								'yes' => __( 'Yes', 'pmpro-bb' ),
-							),
-							'toggle'  => array(
-								'yes' => array(
-									'fields' => array(
-										'description',
-										'description_color',
-										'description_typography',
-										'description_padding',
-										'description_margin',
-									),
-								),
-							),
-						),
-						'description'            => array(
-							'type'    => 'editor',
-							'label'   => __( 'Coupon Description', 'pmpro-bb' ),
-							'preview' => array(
-								'type'     => 'text',
-								'selector' => '.bbvm-advanced-coupon-description',
-							),
-						),
-						'description_color'      => array(
-							'type'       => 'color',
-							'label'      => __( 'Description Text Color', 'pmpro-bb' ),
-							'show_reset' => true,
-							'default'    => 'FFFFFF',
-							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => '.bbvm-advanced-coupon-description',
-										'property' => 'color',
-									),
-								),
-							),
-						),
-						'description_typography' => array(
-							'type'       => 'typography',
-							'label'      => __( 'Description Typography', 'pmpro-bb' ),
-							'responsive' => true,
-							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => '.bbvm-advanced-coupon-description',
-									),
-								),
-							),
-						),
-						'description_padding'    => array(
-							'type'       => 'dimension',
-							'label'      => __( 'Description Padding', 'pmpro-bb' ),
-							'responsive' => true,
-							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => '.bbvm-advanced-coupon-description',
-										'property' => 'padding',
-										'unit'     => 'px',
-									),
-								),
-							),
-						),
-						'description_margin'     => array(
-							'type'       => 'dimension',
-							'label'      => __( 'Description Margin', 'pmpro-bb' ),
-							'responsive' => true,
-							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => '.bbvm-advanced-coupon-description',
-										'property' => 'margin',
-										'unit'     => 'px',
-									),
-								),
-							),
-						),
-					),
-				),
-			),
-		),
-		'coupon'      => array(
-			'title'    => __( 'Coupon', 'pmpro-bb' ),
-			'sections' => array(
-				'headline' => array(
-					'title'  => __( 'Coupon', 'pmpro-bb' ),
-					'fields' => array(
-						'enable_coupon'     => array(
-							'type'    => 'select',
-							'default' => 'yes',
-							'label'   => __( 'Display a Coupon', 'pmpro-bb' ),
-							'options' => array(
-								'no'  => __( 'No', 'pmpro-bb' ),
-								'yes' => __( 'Yes', 'pmpro-bb' ),
-							),
-							'toggle'  => array(
-								'yes' => array(
-									'fields' => array(
-										'coupon_code',
-										'coupon_bg_color',
-										'coupon_text_color',
-										'coupon_padding',
-										'coupon_margin',
-										'coupon_border',
-										'coupon_typography',
-									),
-								),
-							),
-						),
-						'coupon_code'       => array(
-							'type'    => 'text',
-							'label'   => __( 'Coupon Code', 'pmpro-bb' ),
-							'default' => 'XJTXU',
-							'preview' => array(
-								'type'     => 'text',
-								'selector' => '.bbvm-advanced-coupon-code',
-							),
-						),
-						'coupon_bg_color'   => array(
-							'type'       => 'color',
-							'label'      => __( 'Coupon Background Color', 'pmpro-bb' ),
-							'show_reset' => true,
-							'default'    => 'FFFFFF',
-							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => '.bbvm-advanced-coupon-code',
+										'selector' => 'thead tr',
 										'property' => 'background-color',
 									),
 								),
 							),
 						),
-						'coupon_text_color' => array(
+						'table_heading_text_color'       => array(
 							'type'       => 'color',
-							'label'      => __( 'Coupon Text Color', 'pmpro-bb' ),
+							'label'      => __( 'Table Heading Text Color', 'pmpro-bb' ),
+							'show_alpha' => true,
 							'show_reset' => true,
-							'default'    => '000000',
 							'preview'    => array(
 								'type'  => 'css',
 								'rules' => array(
 									array(
-										'selector' => '.bbvm-advanced-coupon-code',
+										'selector' => 'thead tr th',
 										'property' => 'color',
 									),
 								),
 							),
 						),
-						'coupon_padding'    => array(
+						'table_heading_padding'          => array(
 							'type'       => 'dimension',
-							'label'      => __( 'Coupon Padding', 'pmpro-bb' ),
+							'label'      => __( 'Table Heading Padding', 'pmpro-bb' ),
 							'responsive' => true,
 							'preview'    => array(
 								'type'  => 'css',
 								'rules' => array(
 									array(
-										'selector' => '.bbvm-advanced-coupon-code',
+										'selector' => 'thead tr th',
 										'property' => 'padding',
-										'unit'     => 'px',
 									),
 								),
 							),
 						),
-						'coupon_margin'     => array(
-							'type'       => 'dimension',
-							'label'      => __( 'Coupon Margin', 'pmpro-bb' ),
-							'responsive' => true,
-							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => '.bbvm-advanced-coupon-code',
-										'property' => 'margin',
-										'unit'     => 'px',
-									),
-								),
-							),
-						),
-						'coupon_border'     => array(
+						'table_heading_border'           => array(
 							'type'    => 'border',
-							'label'   => __( 'Coupon Border', 'pmpro-bb' ),
+							'label'   => __( 'Table Heading Border', 'pmpro-bb' ),
 							'preview' => array(
 								'type'  => 'css',
 								'rules' => array(
 									array(
-										'selector' => '.bbvm-advanced-coupon-code',
+										'selector' => 'thead tr th',
 										'property' => 'border',
 									),
 								),
 							),
 						),
-						'coupon_typography' => array(
+						'table_heading_typography'       => array(
 							'type'       => 'typography',
-							'label'      => __( 'Coupon Typography', 'pmpro-bb' ),
+							'label'      => __( 'Table Heading Typography', 'pmpro-bb' ),
 							'responsive' => true,
 							'preview'    => array(
 								'type'  => 'css',
 								'rules' => array(
 									array(
-										'selector' => '.bbvm-advanced-coupon-code',
+										'selector' => 'thead tr th',
+									),
+								),
+							),
+						),
+					),
+				),
+				'table_body'   => array(
+					'title'     => __( 'Table Body', 'pmpro-bb' ),
+					'collapsed' => true,
+					'fields'    => array(
+						'odd_background_color'    => array(
+							'type'       => 'color',
+							'label'      => __( 'Odd Row Background Color', 'pmpro-bb' ),
+							'show_alpha' => true,
+							'show_reset' => true,
+							'preview'    => array(
+								'type'  => 'css',
+								'rules' => array(
+									array(
+										'selector' => 'tbody tr.odd',
+										'property' => 'background-color',
+									),
+								),
+							),
+						),
+						'odd_text_color'          => array(
+							'type'       => 'color',
+							'label'      => __( 'Odd Row Text Color', 'pmpro-bb' ),
+							'show_alpha' => true,
+							'show_reset' => true,
+							'preview'    => array(
+								'type'  => 'css',
+								'rules' => array(
+									array(
+										'selector' => 'tbody tr.odd td',
+										'property' => 'color',
+									),
+								),
+							),
+						),
+						'even_background_color'   => array(
+							'type'       => 'color',
+							'label'      => __( 'Even Row Background Color', 'pmpro-bb' ),
+							'show_alpha' => true,
+							'show_reset' => true,
+							'preview'    => array(
+								'type'  => 'css',
+								'rules' => array(
+									array(
+										'selector' => 'tbody tr:not(.odd)',
+										'property' => 'background-color',
+									),
+								),
+							),
+						),
+						'even_text_color'         => array(
+							'type'       => 'color',
+							'label'      => __( 'Even Row Text Color', 'pmpro-bb' ),
+							'show_alpha' => true,
+							'show_reset' => true,
+							'preview'    => array(
+								'type'  => 'css',
+								'rules' => array(
+									array(
+										'selector' => 'tbody tr:not(.odd) td',
+										'property' => 'color',
+									),
+								),
+							),
+						),
+						'active_background_color' => array(
+							'type'       => 'color',
+							'label'      => __( 'Active Row Background Color', 'pmpro-bb' ),
+							'show_alpha' => true,
+							'show_reset' => true,
+							'preview'    => array(
+								'type'  => 'css',
+								'rules' => array(
+									array(
+										'selector' => 'tbody tr.active:not(.odd)',
+										'property' => 'background-color',
+									),
+								),
+							),
+						),
+						'active_text_color'       => array(
+							'type'       => 'color',
+							'label'      => __( 'Active Row Text Color', 'pmpro-bb' ),
+							'show_alpha' => true,
+							'show_reset' => true,
+							'preview'    => array(
+								'type'  => 'css',
+								'rules' => array(
+									array(
+										'selector' => 'tbody tr.active:not(.odd) td',
+										'property' => 'color',
+									),
+								),
+							),
+						),
+						'tbody_typography'        => array(
+							'type'       => 'typography',
+							'label'      => __( 'Row Typography', 'pmpro-bb' ),
+							'responsive' => true,
+							'preview'    => array(
+								'type'  => 'css',
+								'rules' => array(
+									array(
+										'selector' => 'tbody tr td',
+									),
+								),
+							),
+						),
+						'tbody_padding'           => array(
+							'type'       => 'dimension',
+							'label'      => __( 'Row Padding', 'pmpro-bb' ),
+							'responsive' => true,
+							'preview'    => array(
+								'type'  => 'css',
+								'rules' => array(
+									array(
+										'selector' => 'tbody tr td',
+										'property' => 'padding',
 									),
 								),
 							),
@@ -649,259 +316,89 @@ FLBuilder::register_module(
 				),
 			),
 		),
-		'cta'         => array(
-			'title'    => __( 'Call to Action', 'pmpro-bb' ),
+		'button'         => array(
+			'title'    => __( 'Button', 'pmpro-bb' ),
 			'sections' => array(
 				'styles' => array(
-					'title'  => __( 'Call to Action', 'pmpro-bb' ),
+					'title'  => __( 'Button', 'pmpro-bb' ),
 					'fields' => array(
-						'show_cta'                      => array(
-							'type'    => 'select',
-							'label'   => __( 'Show a Call to Action Button?', 'pmpro-bb' ),
-							'options' => array(
-								'yes' => __( 'Yes', 'pmpro-bb' ),
-								'no'  => __( 'No', 'pmpro-bb' ),
-							),
-							'toggle'  => array(
-								'yes' => array(
-									'fields' => array(
-										'button_text',
-										'button_link',
-										'button_icon',
-										'button_background_color',
-										'button_background_color_hover',
-										'button_text_color',
-										'button_text_color_hover',
-										'button_width',
-										'button_padding',
-										'button_margin',
-										'button_typography',
-										'button_border',
-									),
-								),
-							),
-							'default' => 'no',
-						),
-						'button_text'                   => array(
-							'type'    => 'text',
-							'label'   => __( 'Button Text', 'pmpro-bb' ),
+						'button_typography'             => array(
+							'type'    => 'typography',
+							'label'   => __( 'Button Typography', 'pmpro-bb' ),
 							'preview' => array(
-								'type'     => 'text',
-								'selector' => '.bbvm-advanced-coupon-button a',
-							),
-						),
-						'button_link'                   => array(
-							'type'    => 'link',
-							'label'   => __( 'Button URL', 'pmpro-bb' ),
-							'preview' => array(),
-						),
-						'button_icon'                   => array(
-							'type'        => 'icon',
-							'label'       => __( 'Select an Icon', 'pmpro-bb' ),
-							'show_remove' => true,
-						),
-						'button_background_color'       => array(
-							'type'       => 'color',
-							'label'      => __( 'Button Background Color', 'pmpro-bb' ),
-							'show_reset' => true,
-							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => '.bbvm-advanced-coupon-button a',
-										'property' => 'background-color',
-									),
-								),
-							),
-						),
-						'button_background_color_hover' => array(
-							'type'       => 'color',
-							'label'      => __( 'Button Background Hover Color', 'pmpro-bb' ),
-							'show_reset' => true,
-							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => '.bbvm-advanced-coupon-button a:hover',
-										'property' => 'background-color',
-									),
-								),
+								'type'     => 'css',
+								'selector' => '.pmpro_btn',
 							),
 						),
 						'button_text_color'             => array(
 							'type'       => 'color',
 							'label'      => __( 'Button Text Color', 'pmpro-bb' ),
+							'show_alpha' => true,
 							'show_reset' => true,
 							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => '.bbvm-advanced-coupon-button a',
-										'property' => 'color',
-									),
-								),
+								'type'     => 'css',
+								'selector' => '.pmpro_btn',
+								'property' => 'color',
 							),
 						),
-						'button_text_color_hover'       => array(
+						'button_text_color_hover'             => array(
 							'type'       => 'color',
-							'label'      => __( 'Button Text Hover Color', 'pmpro-bb' ),
+							'label'      => __( 'Button Text Color on Hover', 'pmpro-bb' ),
+							'show_alpha' => true,
 							'show_reset' => true,
 							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => '.bbvm-advanced-coupon-button a:hover',
-										'property' => 'color',
-									),
-								),
+								'type'     => 'css',
+								'selector' => '.pmpro_btn:hover',
+								'property' => 'color',
 							),
 						),
-						'button_icon'                   => array(
-							'type'        => 'icon',
-							'label'       => __( 'Select an Icon', 'pmpro-bb' ),
-							'show_remove' => true,
-						),
-						'button_width'                  => array(
-							'type'    => 'select',
-							'label'   => __( 'Button Width', 'pmpro-bb' ),
-							'options' => array(
-								'inline' => __( 'Inline Centered', 'pmpro-bb' ),
-								'block'  => __( 'Full Width', 'pmpro-bb' ),
-							),
-						),
-						'button_padding'                => array(
-							'type'       => 'dimension',
-							'label'      => __( 'Button Padding', 'pmpro-bb' ),
-							'responsive' => true,
+						'button_background_color'       => array(
+							'type'       => 'color',
+							'label'      => __( 'Button Background Color', 'pmpro-bb' ),
+							'show_alpha' => true,
+							'show_reset' => true,
 							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => '.bbvm-advanced-coupon-button a',
-										'property' => 'padding',
-										'unit'     => 'px',
-									),
-								),
+								'type'     => 'css',
+								'selector' => '.pmpro_btn',
+								'property' => 'background-color',
 							),
 						),
-						'button_margin'                 => array(
-							'type'       => 'dimension',
-							'label'      => __( 'Button Margin', 'pmpro-bb' ),
-							'responsive' => true,
+						'button_background_color_hover' => array(
+							'type'       => 'color',
+							'label'      => __( 'Button Background Color on Hover', 'pmpro-bb' ),
+							'show_alpha' => true,
+							'show_reset' => true,
 							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => '.bbvm-advanced-coupon-button a',
-										'property' => 'margin',
-										'unit'     => 'px',
-									),
-								),
-							),
-						),
-						'button_typography'             => array(
-							'type'       => 'typography',
-							'label'      => __( 'Button Typography', 'pmpro-bb' ),
-							'responsive' => true,
-							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => '.bbvm-advanced-coupon-button a',
-									),
-								),
+								'type'     => 'css',
+								'selector' => '.pmpro_btn:hover',
+								'property' => 'background-color',
 							),
 						),
 						'button_border'                 => array(
 							'type'    => 'border',
 							'label'   => __( 'Button Border', 'pmpro-bb' ),
 							'preview' => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => '.bbvm-advanced-coupon-button a',
-										'property' => 'border',
-									),
-								),
-							),
-						),
-					),
-				),
-			),
-		),
-		'disclaimer'  => array(
-			'title'    => __( 'Disclaimer', 'pmpro-bb' ),
-			'sections' => array(
-				'styles' => array(
-					'title'  => __( 'Disclaimer', 'pmpro-bb' ),
-					'fields' => array(
-						'show_disclaimer'       => array(
-							'type'    => 'select',
-							'label'   => __( 'Show a Disclaimer?', 'pmpro-bb' ),
-							'default' => 'no',
-							'options' => array(
-								'yes' => __( 'Yes', 'pmpro-bb' ),
-								'no'  => __( 'No', 'pmpro-bb' ),
-							),
-							'toggle'  => array(
-								'yes' => array(
-									'fields' => array(
-										'disclaimer_text',
-										'disclaimer_typography',
-										'disclaimer_color',
-										'disclaimer_margin',
-										'disclaimer_padding',
-									),
-								),
-							),
-						),
-						'disclaimer_text'       => array(
-							'type'        => 'textarea',
-							'label'       => __( 'Enter Disclaimer Text', 'pmpro-bb' ),
-							'description' => __( 'HTML allowed', 'pmpro-bb' ),
-							'preview'     => array(
-								'type'     => 'text',
-								'selector' => '.bbvm-advanced-coupon-disclaimer',
-							),
-						),
-						'disclaimer_typography' => array(
-							'type'       => 'typography',
-							'label'      => __( 'Disclaimer Typography', 'pmpro-bb' ),
-							'responsive' => true,
-							'preview'    => array(
 								'type'     => 'css',
-								'selector' => '.bbvm-advanced-coupon-disclaimer',
+								'selector' => '.pmpro_btn',
+								'property' => 'border',
 							),
 						),
-						'disclaimer_color'      => array(
-							'type'       => 'color',
-							'label'      => __( 'Disclaimer Text Color', 'pmpro-bb' ),
-							'show_reset' => true,
-							'preview'    => array(
+						'button_border_hover'                 => array(
+							'type'    => 'border',
+							'label'   => __( 'Button Border on Hover', 'pmpro-bb' ),
+							'preview' => array(
 								'type'     => 'css',
-								'selector' => '.bbvm-advanced-coupon-disclaimer',
-								'property' => 'color',
+								'selector' => '.pmpro_btn:hover',
+								'property' => 'border',
 							),
 						),
-						'disclaimer_padding'    => array(
-							'type'       => 'dimension',
-							'label'      => __( 'Disclaimer Padding', 'pmpro-bb' ),
-							'responsive' => true,
-							'preview'    => array(
+						'button_padding'                => array(
+							'type'    => 'dimension',
+							'label'   => __( 'Button Padding', 'pmpro-bb' ),
+							'preview' => array(
 								'type'     => 'css',
-								'selector' => '.bbvm-advanced-coupon-disclaimer',
+								'selector' => '.pmpro_btn',
 								'property' => 'padding',
-								'unit'     => 'px',
-							),
-						),
-						'disclaimer_margin'     => array(
-							'type'       => 'dimension',
-							'label'      => __( 'Disclaimer Margin', 'pmpro-bb' ),
-							'responsive' => true,
-							'preview'    => array(
-								'type'     => 'css',
-								'selector' => '.bbvm-advanced-coupon-disclaimer',
-								'property' => 'margin',
 								'unit'     => 'px',
 							),
 						),
