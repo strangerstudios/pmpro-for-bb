@@ -18,6 +18,35 @@ class PMPRO_BB_Levels extends FLBuilderModule {
 			)
 		);
 	}
+
+	/**
+	 * Get levels for Paid Memberships Pro.
+	 *
+	 * @return array Paid Memberships Pro levels.
+	 */
+	public static function get_levels() {
+		$pmpro_levels      = pmpro_getAllLevels( false, true );
+		$pmpro_level_order = pmpro_getOption( 'level_order' );
+
+		if ( ! empty( $pmpro_level_order ) ) {
+			$level_order = explode( ',', $pmpro_level_order );
+
+			// Reorder array.
+			$reordered_levels = array();
+			foreach ( $level_order as $level_id ) {
+				foreach ( $pmpro_levels as $key => $level ) {
+					if ( $level_id === $level->id ) {
+						$reordered_levels[] = $pmpro_levels[ $key ];
+					}
+				}
+			}
+
+			$pmpro_levels = $reordered_levels;
+		}
+
+		$pmpro_levels = apply_filters( 'pmpro_levels_array', $pmpro_levels );
+		return $pmpro_levels;
+	}
 }
 /**
  * Register the module and its form settings.
@@ -25,141 +54,29 @@ class PMPRO_BB_Levels extends FLBuilderModule {
 FLBuilder::register_module(
 	'PMPRO_BB_Levels',
 	array(
-		'container'   => array(
-			'title'    => __( 'Container', 'pmpro-bb' ),
+		'display'     => array(
+			'title'    => __( 'Display', 'pmpro-bb' ),
 			'sections' => array(
-				'container' => array(
-					'title'  => __( 'Coupon Container', 'pmpro-bb' ),
+				'display' => array(
+					'title'  => __( 'Display', 'pmpro-bb' ),
 					'fields' => array(
-						'min_height'              => array(
-							'type'       => 'unit',
-							'label'      => __( 'Minimum Height', 'pmpro-bb' ),
-							'default'    => 400,
-							'responsive' => true,
-							'preview'    => array(
-								'type'      => 'css',
-								'selector'  => '.bbvm-advanced-coupon',
-								'property'  => 'min-height',
-								'unit'      => 'px',
-								'important' => true,
-							),
-						),
-						'background_photo'        => array(
-							'type'        => 'photo',
-							'label'       => __( 'Background Photo', 'pmpro-bb' ),
-							'show_remove' => true,
-							'preview'     => array(
-								'type'      => 'css',
-								'selector'  => '.bbvm-advanced-coupon',
-								'property'  => 'background-image',
-								'important' => true,
-							),
-						),
-						'background_overlay'      => array(
-							'type'       => 'color',
-							'label'      => __( 'Background Overlay', 'pmpro-bb' ),
-							'show_reset' => true,
-							'show_alpha' => true,
-							'default'    => '4f4f4f',
-							'preview'    => array(
-								'type'      => 'css',
-								'selector'  => '.bbvm-advanced-coupon-overlay',
-								'property'  => 'background-color',
-								'important' => true,
-							),
-						),
-						'outer_border'            => array(
-							'type'    => 'unit',
-							'label'   => __( 'Outer Border Width', 'pmpro-bb' ),
-							'default' => 8,
-							'preview' => array(
-								'type'      => 'css',
-								'selector'  => '.fl-bbvm-advanced-coupon-wrapper',
-								'property'  => 'border-width',
-								'important' => true,
-								'unit'      => 'px',
-							),
-						),
-						'outer_border_color'      => array(
-							'type'       => 'color',
-							'label'      => __( 'Outer Border Color', 'pmpro-bb' ),
-							'show_alpha' => true,
-							'show_reset' => true,
-							'default'    => '000000',
-							'preview'    => array(
-								'type'     => 'css',
-								'selector' => '.fl-bbvm-advanced-coupon-wrapper',
-								'property' => 'border-color',
-							),
-						),
-						'outer_border_appearance' => array(
+						'display'       => array(
 							'type'    => 'select',
-							'label'   => __( 'Outer Border Appearance', 'pmpro-bb' ),
+							'label'   => __( 'Layout', 'pmpro-bb' ),
 							'options' => array(
-								'none'   => __( 'None', 'pmpro-bb' ),
-								'solid'  => __( 'Solid', 'pmpro-bb' ),
-								'dashed' => __( 'Dashed', 'pmpro-bb' ),
-								'dotted' => __( 'Dotted', 'pmpro-bb' ),
-								'double' => __( 'Double', 'pmpro-bb' ),
+								'table' => __( 'Table Layout', 'pmpro-bb' ),
+								'card'  => __( 'Card Layout', 'pmpro-bb' ),
 							),
-							'default' => 'dashed',
-							'preview' => array(
-								'type'     => 'css',
-								'selector' => '.fl-bbvm-advanced-coupon-wrapper',
-								'property' => 'border-style',
-							),
+							'default' => 'table',
 						),
-						'inner_border'            => array(
-							'type'    => 'unit',
-							'label'   => __( 'Inner Border Width', 'pmpro-bb' ),
-							'default' => 10,
-							'preview' => array(
-								'type'      => 'css',
-								'selector'  => '.bbvm-advanced-coupon-overlay',
-								'property'  => 'border-width',
-								'important' => true,
-								'unit'      => 'px',
-							),
-						),
-						'inner_border_color'      => array(
-							'type'       => 'color',
-							'label'      => __( 'Inner Border Color', 'pmpro-bb' ),
-							'show_alpha' => true,
-							'show_reset' => true,
-							'default'    => 'FFFFFF',
-							'preview'    => array(
-								'type'     => 'css',
-								'selector' => '.bbvm-advanced-coupon-overlay',
-								'property' => 'border-color',
-							),
-						),
-						'inner_border_appearance' => array(
+						'level_display' => array(
 							'type'    => 'select',
-							'label'   => __( 'Inner Border Appearance', 'pmpro-bb' ),
-							'default' => 'solid',
+							'label'   => __( 'Level Display', 'pmpro-bb' ),
 							'options' => array(
-								'none'   => __( 'None', 'pmpro-bb' ),
-								'solid'  => __( 'Solid', 'pmpro-bb' ),
-								'dashed' => __( 'Dashed', 'pmpro-bb' ),
-								'dotted' => __( 'Dotted', 'pmpro-bb' ),
-								'double' => __( 'Double', 'pmpro-bb' ),
+								'all'    => __( 'Display All Levels', 'pmpro-bb' ),
+								'custom' => __( 'Display Only Certain Levels', 'pmpro-bb' ),
 							),
-							'preview' => array(
-								'type'     => 'css',
-								'selector' => '.bbvm-advanced-coupon-overlay',
-								'property' => 'border-style',
-							),
-						),
-						'coupon_box_padding'      => array(
-							'type'       => 'dimension',
-							'label'      => __( 'Coupon Box Padding', 'pmpro-bb' ),
-							'responsive' => true,
-							'preview'    => array(
-								'type'     => 'css',
-								'selector' => '.bbvm-advanced-coupon',
-								'property' => 'padding',
-								'unit'     => 'px',
-							),
+							'default' => 'all',
 						),
 					),
 				),
