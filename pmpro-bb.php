@@ -67,5 +67,25 @@ class PMPRO_BB {
 		</style>
 		<?php
 	}
+
+	/**
+	 * Wrapper for processing shortcodes.
+	 *
+	 * @param string $shortcode The shortcode to process.
+	 * @param bool   $echo      Whether to echo the output or return it.
+	 */
+	public static function process_shortcode( $shortcode, $echo = true ) {
+		ob_start();
+		if ( function_exists( 'apply_shortcodes' ) ) {
+			echo apply_shortcodes( $shortcode ); // phpcs:ignore
+		} else {
+			echo do_shortcode( $shortcode );
+		}
+		if ( $echo ) {
+			echo ob_get_clean(); // phpcs:ignore
+		} else {
+			return ob_get_clean();
+		}
+	}
 }
 new PMPRO_BB();
