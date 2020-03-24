@@ -17,6 +17,17 @@ class PMPRO_BB_Signup_Module extends FLBuilderModule {
 				'partial_refresh' => false,
 			)
 		);
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 9 );
+	}
+	/**
+	 * Try to enqueue Strong Password manager scripts. Hacky, but works.
+	 */
+	public function enqueue_scripts() {
+		global $pmpro_pages;
+		$object = get_queried_object();
+		if ( is_a( $object, 'WP_Post' ) ) {
+			$pmpro_pages['checkout'] = $object->post_name;
+		}
 	}
 }
 $pmpro_bb_levels         = PMPRO_BB_Levels::get_levels();
