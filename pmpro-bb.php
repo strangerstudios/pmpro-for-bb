@@ -57,6 +57,12 @@ class PMPRO_BB {
 			// Include level cards module.
 			require 'modules/level-cards/pmpro-level-cards.php';
 			new PMPRO_BB_Level_Cards_Module();
+
+			// Include the Sign Up Module.
+			if ( function_exists( 'pmprosus_signup_shortcode' ) ) {
+				require 'modules/signup/pmpro-signup.php';
+				new PMPRO_BB_Signup_Module();
+			}
 		}
 	}
 
