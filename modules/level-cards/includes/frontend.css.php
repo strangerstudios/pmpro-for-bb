@@ -302,7 +302,7 @@ FLBuilderCSS::dimension_field_rule(
 	grid-template-columns: 1fr 1fr;
 	grid-template-rows: 1fr;
 	grid-gap: 0 2em;
-	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(<?php echo absint( $settings->card_width ); ?>px, 1fr));
 }
 .fl-node-<?php echo esc_html( $id ); ?> .pmpro-bb-levels-wrapper .pmpro-levels-card {
 	margin-bottom: 2em;

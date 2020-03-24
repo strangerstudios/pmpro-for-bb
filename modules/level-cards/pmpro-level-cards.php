@@ -82,15 +82,15 @@ FLBuilder::register_module(
 				'layout'  => array(
 					'title'  => __( 'Layout', 'pmpro-bb' ),
 					'fields' => array(
-						'columns'             => array(
+						'card_width'             => array(
 							'type'    => 'unit',
-							'label'   => __( 'Maximum Number of Columns', 'pmpro-bb' ),
+							'label'   => __( 'Card Width', 'pmpro-bb' ),
 							'slider'  => array(
-								'min'  => 1,
-								'max'  => 6,
-								'step' => 1,
+								'min'  => 150,
+								'max'  => 1000,
+								'step' => 10,
 							),
-							'default' => 3,
+							'default' => 300,
 						),
 						'display_level'       => array(
 							'type'    => 'select',
