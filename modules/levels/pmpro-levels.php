@@ -341,7 +341,7 @@ FLBuilder::register_module(
 								'property' => 'color',
 							),
 						),
-						'button_text_color_hover'             => array(
+						'button_text_color_hover'       => array(
 							'type'       => 'color',
 							'label'      => __( 'Button Text Color on Hover', 'pmpro-bb' ),
 							'show_alpha' => true,
@@ -383,7 +383,7 @@ FLBuilder::register_module(
 								'property' => 'border',
 							),
 						),
-						'button_border_hover'                 => array(
+						'button_border_hover'           => array(
 							'type'    => 'border',
 							'label'   => __( 'Button Border on Hover', 'pmpro-bb' ),
 							'preview' => array(

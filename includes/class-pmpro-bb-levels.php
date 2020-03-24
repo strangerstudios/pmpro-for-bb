@@ -31,7 +31,7 @@ class PMPRO_BB_Levels {
 			foreach ( $level_order as $level_id ) {
 				foreach ( $pmpro_levels as $key => $level ) {
 					if ( $level_id === $level->id ) {
-						$reordered_levels[] = $pmpro_levels[ $key ];
+						$reordered_levels[ $level->id ] = $pmpro_levels[ $key ];
 					}
 				}
 			}

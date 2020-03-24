@@ -53,6 +53,10 @@ class PMPRO_BB {
 			// Include levels module.
 			require 'modules/levels/pmpro-levels.php';
 			new PMPRO_BB_Levels_Module();
+
+			// Include level cards module.
+			require 'modules/level-cards/pmpro-level-cards.php';
+			new PMPRO_BB_Level_Cards_Module();
 		}
 	}
 
