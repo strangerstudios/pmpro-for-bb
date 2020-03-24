@@ -82,7 +82,7 @@ FLBuilder::register_module(
 				'layout'  => array(
 					'title'  => __( 'Layout', 'pmpro-bb' ),
 					'fields' => array(
-						'card_width'             => array(
+						'card_width'          => array(
 							'type'    => 'unit',
 							'label'   => __( 'Card Width', 'pmpro-bb' ),
 							'slider'  => array(
