@@ -54,6 +54,11 @@ if ( 'custom' === $settings->title ) {
 ?>
 <div class="pmpro-bb-signup-wrapper">
 	<?php
+	if ( FLBuilderModel::is_builder_enabled() && 'yes' === $settings->login_preview ) {
+		global $current_user;
+		$current_user_id  = $current_user->ID;
+		$current_user->ID = 0;
+	}
 	PMPRO_BB::process_shortcode(
 		sprintf(
 			'[pmpro_signup short="%s" level="%s" hidelabels="%s" intro="%s" custom_fields="%s" login="%s" redirect="%s" submit_button="%s" title="%s"]',
@@ -68,5 +73,8 @@ if ( 'custom' === $settings->title ) {
 			esc_attr( $pmpro_bb_title )
 		)
 	);
+	if ( FLBuilderModel::is_builder_enabled() && 'yes' === $settings->login_preview ) {
+		$current_user->ID = $current_user_id;
+	}
 	?>
 </div><!-- .pmpro-bb-signup-wrapper -->

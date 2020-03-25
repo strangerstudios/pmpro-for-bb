@@ -41,7 +41,7 @@ foreach ( $pmpro_bb_levels as $pmpro_level ) {
 FLBuilder::register_module(
 	'PMPRO_BB_Signup_Module',
 	array(
-		'options'        => array(
+		'options'       => array(
 			'title'    => __( 'Options', 'pmpro-bb' ),
 			'sections' => array(
 				'options' => array(
@@ -172,44 +172,28 @@ FLBuilder::register_module(
 				),
 			),
 		),
-		'table_settings' => array(
-			'title'    => __( 'Table Settings', 'pmpro-bb' ),
+		'styles'        => array(
+			'title'    => __( 'Styles', 'pmpro-bb' ),
 			'sections' => array(
-				'table'        => array(
-					'title'  => '',
+				'container' => array(
+					'title'  => __( 'Container Settings', 'pmpro-bb' ),
 					'fields' => array(
-						'table_border' => array(
-							'type'    => 'border',
-							'label'   => __( 'Table Border', 'pmpro-bb' ),
-							'preview' => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => 'table',
-										'property' => 'border',
-									),
-								),
+						'container_max_width'        => array(
+							'type'         => 'unit',
+							'label'        => __( 'Container Max-Width', 'pmpro-bb' ),
+							'units'        => array( 'px', 'vw', '%' ),
+							'default_unit' => '%',
+							'preview'      => array(
+								'type'     => 'css',
+								'selector' => '.pmpro_signup_form',
+								'property' => 'max-width',
 							),
+							'responsive'   => true,
+							'default'      => 100,
 						),
-						'table_width'  => array(
-							'type'    => 'select',
-							'label'   => __( 'Table Width', 'pmpro-bb' ),
-							'options' => array(
-								'regular' => __( 'Regular Width', 'pmpro-bb' ),
-								'full'    => __( 'Full Width', 'pmpro-bb' ),
-							),
-							'default' => 'regular',
-							'toggle'  => array(
-								'regular' => array(
-									'fields' => array(
-										'table_align',
-									),
-								),
-							),
-						),
-						'table_align'  => array(
+						'container_align'            => array(
 							'type'    => 'align',
-							'label'   => __( 'Table Alignment', 'pmpro-bb' ),
+							'label'   => __( 'Alignment', 'pmpro-bb' ),
 							'values'  => array(
 								'left'   => '0 auto 0 0',
 								'center' => '0 auto',
@@ -218,225 +202,359 @@ FLBuilder::register_module(
 							'default' => '0 auto 0 0',
 							'preview' => array(
 								'type'     => 'css',
-								'selector' => 'table',
+								'selector' => '.pmpro_signup_form',
 								'property' => 'margin',
 							),
 						),
-					),
-				),
-				'table_header' => array(
-					'title'     => __( 'Table Header', 'pmpro-bb' ),
-					'collapsed' => true,
-					'fields'    => array(
-						'table_heading_background_color' => array(
-							'type'       => 'color',
-							'label'      => __( 'Table Heading Background Color', 'pmpro-bb' ),
-							'show_alpha' => true,
-							'show_reset' => true,
-							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => 'thead tr',
-										'property' => 'background-color',
-									),
-								),
-							),
-						),
-						'table_heading_text_color'       => array(
-							'type'       => 'color',
-							'label'      => __( 'Table Heading Text Color', 'pmpro-bb' ),
-							'show_alpha' => true,
-							'show_reset' => true,
-							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => 'thead tr th',
-										'property' => 'color',
-									),
-								),
-							),
-						),
-						'table_heading_padding'          => array(
+						'container_padding'          => array(
 							'type'       => 'dimension',
-							'label'      => __( 'Table Heading Padding', 'pmpro-bb' ),
+							'label'      => __( 'Padding', 'pmpro-bb' ),
 							'responsive' => true,
 							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => 'thead tr th',
-										'property' => 'padding',
-									),
-								),
+								'type'     => 'css',
+								'selector' => '.pmpro_signup_form',
+								'property' => 'padding',
 							),
 						),
-						'table_heading_border'           => array(
+						'container_background_color' => array(
+							'type'       => 'color',
+							'label'      => __( 'Background Color', 'pmpro-bb' ),
+							'show_alpha' => true,
+							'show_reset' => true,
+							'preview'    => array(
+								'type'     => 'css',
+								'selector' => '.pmpro_signup_form',
+								'property' => 'background-color',
+							),
+						),
+						'container_border'           => array(
 							'type'    => 'border',
-							'label'   => __( 'Table Heading Border', 'pmpro-bb' ),
+							'label'   => __( 'Border', 'pmpro-bb' ),
 							'preview' => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => 'thead tr th',
-										'property' => 'border',
-									),
-								),
-							),
-						),
-						'table_heading_typography'       => array(
-							'type'       => 'typography',
-							'label'      => __( 'Table Heading Typography', 'pmpro-bb' ),
-							'responsive' => true,
-							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => 'thead tr th',
-									),
-								),
+								'type'     => 'css',
+								'selector' => '.pmpro_signup_form',
+								'property' => 'border',
 							),
 						),
 					),
 				),
-				'table_body'   => array(
-					'title'     => __( 'Table Body', 'pmpro-bb' ),
-					'collapsed' => true,
-					'fields'    => array(
-						'odd_background_color'    => array(
+				'heading'   => array(
+					'title'  => __( 'Heading', 'pmpro-bb' ),
+					'fields' => array(
+						'heading_color'      => array(
 							'type'       => 'color',
-							'label'      => __( 'Odd Row Background Color', 'pmpro-bb' ),
+							'label'      => __( 'Heading Text Color', 'pmpro-bb' ),
 							'show_alpha' => true,
 							'show_reset' => true,
 							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => 'tbody tr.odd',
-										'property' => 'background-color',
-									),
-								),
+								'type'     => 'css',
+								'selector' => '.pmpro_signup_form h2',
+								'property' => 'color',
 							),
 						),
-						'odd_text_color'          => array(
-							'type'       => 'color',
-							'label'      => __( 'Odd Row Text Color', 'pmpro-bb' ),
-							'show_alpha' => true,
-							'show_reset' => true,
-							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => 'tbody tr.odd td',
-										'property' => 'color',
-									),
-								),
-							),
-						),
-						'even_background_color'   => array(
-							'type'       => 'color',
-							'label'      => __( 'Even Row Background Color', 'pmpro-bb' ),
-							'show_alpha' => true,
-							'show_reset' => true,
-							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => 'tbody tr:not(.odd)',
-										'property' => 'background-color',
-									),
-								),
-							),
-						),
-						'even_text_color'         => array(
-							'type'       => 'color',
-							'label'      => __( 'Even Row Text Color', 'pmpro-bb' ),
-							'show_alpha' => true,
-							'show_reset' => true,
-							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => 'tbody tr:not(.odd) td',
-										'property' => 'color',
-									),
-								),
-							),
-						),
-						'active_background_color' => array(
-							'type'       => 'color',
-							'label'      => __( 'Active Row Background Color', 'pmpro-bb' ),
-							'show_alpha' => true,
-							'show_reset' => true,
-							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => 'tbody tr.active:not(.odd)',
-										'property' => 'background-color',
-									),
-								),
-							),
-						),
-						'active_text_color'       => array(
-							'type'       => 'color',
-							'label'      => __( 'Active Row Text Color', 'pmpro-bb' ),
-							'show_alpha' => true,
-							'show_reset' => true,
-							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => 'tbody tr.active:not(.odd) td',
-										'property' => 'color',
-									),
-								),
-							),
-						),
-						'tbody_typography'        => array(
-							'type'       => 'typography',
-							'label'      => __( 'Row Typography', 'pmpro-bb' ),
-							'responsive' => true,
-							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => 'tbody tr td',
-									),
-								),
-							),
-						),
-						'tbody_padding'           => array(
+						'heading_padding'    => array(
 							'type'       => 'dimension',
-							'label'      => __( 'Row Padding', 'pmpro-bb' ),
+							'label'      => __( 'Heading Padding', 'pmpro-bb' ),
 							'responsive' => true,
 							'preview'    => array(
-								'type'  => 'css',
-								'rules' => array(
-									array(
-										'selector' => 'tbody tr td',
-										'property' => 'padding',
-									),
-								),
+								'type'     => 'css',
+								'selector' => '.pmpro_signup_form h2',
+								'property' => 'padding',
+								'unit'     => 'px',
+							),
+						),
+						'heading_margin'     => array(
+							'type'       => 'dimension',
+							'label'      => __( 'Heading Margin', 'pmpro-bb' ),
+							'responsive' => true,
+							'preview'    => array(
+								'type'     => 'css',
+								'selector' => '.pmpro_signup_form h2',
+								'property' => 'margin',
+								'unit'     => 'px',
+							),
+						),
+						'heading_typography' => array(
+							'type'       => 'typography',
+							'label'      => __( 'Heading Typography', 'pmpro-bb' ),
+							'responsive' => true,
+							'preview'    => array(
+								'type'     => 'css',
+								'selector' => '.pmpro_signup_form h2',
+							),
+						),
+					),
+				),
+				'intro'     => array(
+					'title'  => __( 'Introduction', 'pmpro-bb' ),
+					'fields' => array(
+						'intro_color'      => array(
+							'type'       => 'color',
+							'label'      => __( 'Intro Text Color', 'pmpro-bb' ),
+							'show_alpha' => true,
+							'show_reset' => true,
+							'preview'    => array(
+								'type'     => 'css',
+								'selector' => '.pmpro_signup_form > p',
+								'property' => 'color',
+							),
+						),
+						'intro_padding'    => array(
+							'type'       => 'dimension',
+							'label'      => __( 'Intro Padding', 'pmpro-bb' ),
+							'responsive' => true,
+							'preview'    => array(
+								'type'     => 'css',
+								'selector' => '.pmpro_signup_form > p',
+								'property' => 'padding',
+								'unit'     => 'px',
+							),
+						),
+						'intro_margin'     => array(
+							'type'       => 'dimension',
+							'label'      => __( 'Intro Margin', 'pmpro-bb' ),
+							'responsive' => true,
+							'preview'    => array(
+								'type'     => 'css',
+								'selector' => '.pmpro_signup_form > p',
+								'property' => 'margin',
+								'unit'     => 'px',
+							),
+						),
+						'intro_typography' => array(
+							'type'       => 'typography',
+							'label'      => __( 'Intro Typography', 'pmpro-bb' ),
+							'responsive' => true,
+							'preview'    => array(
+								'type'     => 'css',
+								'selector' => '.pmpro_signup_form > p',
+							),
+						),
+					),
+				),
+				'password'  => array(
+					'title'  => __( 'Password Strength', 'pmpro-bb' ),
+					'fields' => array(
+						'password_info_text_color' => array(
+							'type'       => 'color',
+							'label'      => __( 'Info Text Color', 'pmpro-bb' ),
+							'show_alpha' => true,
+							'show_reset' => true,
+							'preview'    => array(
+								'type'     => 'css',
+								'selector' => '#pmprosp-password-notice',
+								'property' => 'color',
+							),
+						),
+						'password_info_padding'    => array(
+							'type'       => 'dimension',
+							'label'      => __( 'Info Padding', 'pmpro-bb' ),
+							'responsive' => true,
+							'preview'    => array(
+								'type'     => 'css',
+								'selector' => '#pmprosp-password-notice',
+								'property' => 'padding',
+								'unit'     => 'px',
+							),
+						),
+						'password_info_margin'     => array(
+							'type'       => 'dimension',
+							'label'      => __( 'Info Margin', 'pmpro-bb' ),
+							'responsive' => true,
+							'preview'    => array(
+								'type'     => 'css',
+								'selector' => '#pmprosp-password-notice',
+								'property' => 'margin',
+								'unit'     => 'px',
+							),
+						),
+						'password_info_typography' => array(
+							'type'       => 'typography',
+							'label'      => __( 'Info Typography', 'pmpro-bb' ),
+							'responsive' => true,
+							'preview'    => array(
+								'type'     => 'css',
+								'selector' => '#pmprosp-password-notice',
 							),
 						),
 					),
 				),
 			),
 		),
-		'button'         => array(
+		'form_settings' => array(
+			'title'    => __( 'Form Settings', 'pmpro-bb' ),
+			'sections' => array(
+				'preview' => array(
+					'title'  => __( 'Preview', 'pmpro-bb' ),
+					'fields' => array(
+						'login_preview' => array(
+							'type'    => 'select',
+							'label'   => __( 'Preview Login Form?', 'pmpro-bb' ),
+							'options' => array(
+								'no'  => __( 'No', 'pmpro-bb' ),
+								'yes' => __( 'Yes', 'pmpro-bb' ),
+							),
+							'help'    => __( 'Switch between what a logged in user sees and what a logged out user sees. Helpful for styling.', 'pmpro-bb' ),
+						),
+					),
+				),
+				'labels'  => array(
+					'title'  => __( 'Form Labels', 'pmpro-bb' ),
+					'fields' => array(
+						'label_margin'     => array(
+							'type'       => 'dimension',
+							'label'      => __( 'Label Margin', 'pmpro-bb' ),
+							'responsive' => true,
+							'preview'    => array(
+								'type'     => 'css',
+								'selector' => 'label',
+								'property' => 'margin',
+							),
+						),
+						'label_text_color' => array(
+							'type'       => 'color',
+							'label'      => __( 'Label Text Color', 'pmpro-bb' ),
+							'show_alpha' => true,
+							'show_reset' => true,
+							'preview'    => array(
+								'type'     => 'css',
+								'selector' => 'label',
+								'property' => 'color',
+							),
+						),
+						'label_typography' => array(
+							'type'    => 'typography',
+							'label'   => __( 'Label Typography', 'pmpro-bb' ),
+							'preview' => array(
+								'type'     => 'css',
+								'selector' => 'label',
+							),
+						),
+					),
+				),
+				'inputs'  => array(
+					'title'  => __( 'Form Inputs', 'pmpro-bb' ),
+					'fields' => array(
+						'input_width'             => array(
+							'type'         => 'unit',
+							'label'        => __( 'Input Width', 'pmpro-bb' ),
+							'units'        => array( 'px', 'vw', '%' ),
+							'default_unit' => 'px',
+							'preview'      => array(
+								'type'     => 'css',
+								'selector' => 'input:not([disabled]):not([type="submit"])',
+								'property' => 'width',
+							),
+							'responsive'   => true,
+							'default'      => 50,
+						),
+						'input_padding'           => array(
+							'type'       => 'dimension',
+							'label'      => __( 'Input Padding', 'pmpro-bb' ),
+							'responsive' => true,
+							'preview'    => array(
+								'type'     => 'css',
+								'selector' => 'input:not([disabled]):not([type="submit"])',
+								'property' => 'padding',
+							),
+						),
+						'input_text_color'        => array(
+							'type'       => 'color',
+							'label'      => __( 'Text Color', 'pmpro-bb' ),
+							'show_alpha' => true,
+							'show_reset' => true,
+							'preview'    => array(
+								'type'     => 'css',
+								'selector' => 'input:not([disabled]):not([type="submit"])',
+								'property' => 'color',
+							),
+						),
+						'input_placeholder_color' => array(
+							'type'       => 'color',
+							'label'      => __( 'Placeholder Color', 'pmpro-bb' ),
+							'show_alpha' => true,
+							'show_reset' => true,
+							'preview'    => array(
+								'type'     => 'css',
+								'selector' => 'input:not([disabled]):not([type="submit"])::::placeholder',
+								'property' => 'color',
+							),
+						),
+						'input_background_color'  => array(
+							'type'       => 'color',
+							'label'      => __( 'Background Color', 'pmpro-bb' ),
+							'show_alpha' => true,
+							'show_reset' => true,
+							'preview'    => array(
+								'type'     => 'css',
+								'selector' => 'input:not([disabled]):not([type="submit"])',
+								'property' => 'background-color',
+							),
+						),
+						'input_border'            => array(
+							'type'    => 'border',
+							'label'   => __( 'Input Border', 'pmpro-bb' ),
+							'preview' => array(
+								'type'     => 'css',
+								'selector' => 'input:not([disabled]):not([type="submit"])',
+								'property' => 'border',
+							),
+						),
+						'input_typography'        => array(
+							'type'    => 'typography',
+							'label'   => __( 'Input Typography', 'pmpro-bb' ),
+							'preview' => array(
+								'type'     => 'css',
+								'selector' => 'input:not([disabled]):not([type="submit"])',
+							),
+						),
+						'placeholder_typography'  => array(
+							'type'    => 'typography',
+							'label'   => __( 'Input Placeholder Typography', 'pmpro-bb' ),
+							'preview' => array(
+								'type'     => 'css',
+								'selector' => 'input:not([disabled]):not([type="submit"])::placeholder',
+							),
+						),
+					),
+				),
+			),
+		),
+		'button'        => array(
 			'title'    => __( 'Button', 'pmpro-bb' ),
 			'sections' => array(
 				'styles' => array(
 					'title'  => __( 'Button', 'pmpro-bb' ),
 					'fields' => array(
+						'button_width'                  => array(
+							'type'         => 'unit',
+							'label'        => __( 'Button Width', 'pmpro-bb' ),
+							'units'        => array( 'px', 'vw', '%' ),
+							'default_unit' => 'px',
+							'preview'      => array(
+								'type'     => 'css',
+								'selector' => '.pmpro_btn-submit-checkout',
+								'property' => 'width',
+							),
+							'responsive'   => true,
+							'default'      => 100,
+						),
+						'button_align'                  => array(
+							'type'    => 'align',
+							'label'   => __( 'Button Alignment', 'pmpro-bb' ),
+							'default' => 'right',
+							'preview' => array(
+								'type'     => 'css',
+								'selector' => '.pmpro_submit',
+								'property' => 'text-align',
+							),
+						),
 						'button_typography'             => array(
 							'type'    => 'typography',
 							'label'   => __( 'Button Typography', 'pmpro-bb' ),
 							'preview' => array(
 								'type'     => 'css',
-								'selector' => '.pmpro_btn',
+								'selector' => '.pmpro_btn-submit-checkout',
 							),
 						),
 						'button_text_color'             => array(
@@ -446,7 +564,7 @@ FLBuilder::register_module(
 							'show_reset' => true,
 							'preview'    => array(
 								'type'     => 'css',
-								'selector' => '.pmpro_btn',
+								'selector' => '.pmpro_btn-submit-checkout',
 								'property' => 'color',
 							),
 						),
@@ -457,7 +575,7 @@ FLBuilder::register_module(
 							'show_reset' => true,
 							'preview'    => array(
 								'type'     => 'css',
-								'selector' => '.pmpro_btn:hover',
+								'selector' => '.pmpro_btn-submit-checkout:hover',
 								'property' => 'color',
 							),
 						),
@@ -468,7 +586,7 @@ FLBuilder::register_module(
 							'show_reset' => true,
 							'preview'    => array(
 								'type'     => 'css',
-								'selector' => '.pmpro_btn',
+								'selector' => '.pmpro_btn-submit-checkout',
 								'property' => 'background-color',
 							),
 						),
@@ -479,7 +597,7 @@ FLBuilder::register_module(
 							'show_reset' => true,
 							'preview'    => array(
 								'type'     => 'css',
-								'selector' => '.pmpro_btn:hover',
+								'selector' => '.pmpro_btn-submit-checkout:hover',
 								'property' => 'background-color',
 							),
 						),
@@ -488,7 +606,7 @@ FLBuilder::register_module(
 							'label'   => __( 'Button Border', 'pmpro-bb' ),
 							'preview' => array(
 								'type'     => 'css',
-								'selector' => '.pmpro_btn',
+								'selector' => '.pmpro_btn-submit-checkout',
 								'property' => 'border',
 							),
 						),
@@ -497,7 +615,7 @@ FLBuilder::register_module(
 							'label'   => __( 'Button Border on Hover', 'pmpro-bb' ),
 							'preview' => array(
 								'type'     => 'css',
-								'selector' => '.pmpro_btn:hover',
+								'selector' => '.pmpro_btn-submit-checkout:hover',
 								'property' => 'border',
 							),
 						),
@@ -506,7 +624,121 @@ FLBuilder::register_module(
 							'label'   => __( 'Button Padding', 'pmpro-bb' ),
 							'preview' => array(
 								'type'     => 'css',
-								'selector' => '.pmpro_btn',
+								'selector' => '.pmpro_btn-submit-checkout',
+								'property' => 'padding',
+								'unit'     => 'px',
+							),
+						),
+					),
+				),
+			),
+		),
+		'login'         => array(
+			'title'    => __( 'Login', 'pmpro-bb' ),
+			'sections' => array(
+				'styles' => array(
+					'title'  => __( 'Login Button', 'pmpro-bb' ),
+					'fields' => array(
+						'login_button_width'            => array(
+							'type'         => 'unit',
+							'label'        => __( 'Button Width', 'pmpro-bb' ),
+							'units'        => array( 'px', 'vw', '%' ),
+							'default_unit' => 'px',
+							'preview'      => array(
+								'type'     => 'css',
+								'selector' => '.login-link a',
+								'property' => 'width',
+							),
+							'responsive'   => true,
+							'default'      => 100,
+						),
+						'login_button_align'            => array(
+							'type'    => 'align',
+							'label'   => __( 'Button Alignment', 'pmpro-bb' ),
+							'default' => 'right',
+							'preview' => array(
+								'type'      => 'css',
+								'selector'  => '.login-link',
+								'property'  => 'text-align',
+								'important' => true,
+							),
+						),
+						'login_button_typography'       => array(
+							'type'    => 'typography',
+							'label'   => __( 'Button Typography', 'pmpro-bb' ),
+							'preview' => array(
+								'type'     => 'css',
+								'selector' => '.login-link a',
+							),
+						),
+						'login_button_text_color'       => array(
+							'type'       => 'color',
+							'label'      => __( 'Button Text Color', 'pmpro-bb' ),
+							'show_alpha' => true,
+							'show_reset' => true,
+							'preview'    => array(
+								'type'     => 'css',
+								'selector' => '.login-link a',
+								'property' => 'color',
+							),
+						),
+						'login_button_text_color_hover' => array(
+							'type'       => 'color',
+							'label'      => __( 'Button Text Color on Hover', 'pmpro-bb' ),
+							'show_alpha' => true,
+							'show_reset' => true,
+							'preview'    => array(
+								'type'     => 'css',
+								'selector' => '.login-link a:hover',
+								'property' => 'color',
+							),
+						),
+						'login_button_background_color' => array(
+							'type'       => 'color',
+							'label'      => __( 'Button Background Color', 'pmpro-bb' ),
+							'show_alpha' => true,
+							'show_reset' => true,
+							'preview'    => array(
+								'type'     => 'css',
+								'selector' => '.login-link a',
+								'property' => 'background-color',
+							),
+						),
+						'login_button_background_color_hover' => array(
+							'type'       => 'color',
+							'label'      => __( 'Button Background Color on Hover', 'pmpro-bb' ),
+							'show_alpha' => true,
+							'show_reset' => true,
+							'preview'    => array(
+								'type'     => 'css',
+								'selector' => '.login-link a:hover',
+								'property' => 'background-color',
+							),
+						),
+						'login_button_border'           => array(
+							'type'    => 'border',
+							'label'   => __( 'Button Border', 'pmpro-bb' ),
+							'preview' => array(
+								'type'     => 'css',
+								'selector' => '.login-link a',
+								'property' => 'border',
+							),
+						),
+						'login_button_border_hover'     => array(
+							'type'    => 'border',
+							'label'   => __( 'Button Border on Hover', 'pmpro-bb' ),
+							'preview' => array(
+								'type'     => 'css',
+								'selector' => '.login-link a:hover',
+								'property' => 'border',
+							),
+						),
+						'login_button_padding'          => array(
+							'type'    => 'dimension',
+							'label'   => __( 'Button Padding', 'pmpro-bb' ),
+							'preview' => array(
+								'type'     => 'css',
+								'selector' => '.login-link a',
 								'property' => 'padding',
 								'unit'     => 'px',
 							),

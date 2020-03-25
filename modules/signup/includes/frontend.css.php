@@ -8,8 +8,21 @@
  * @since 1.0.0
  */
 
-// General table styles.
+// Base Input Styles.
 ?>
+.fl-node-<?php echo esc_html( $id ); ?> .pmpro-bb-signup-wrapper form.pmpro_form .input,
+.fl-node-<?php echo esc_html( $id ); ?> .pmpro-bb-signup-wrapper form.pmpro_form textarea,
+.fl-node-<?php echo esc_html( $id ); ?> .pmpro-bb-signup-wrapper form.pmpro_form select,
+.fl-node-<?php echo esc_html( $id ); ?> .pmpro-bb-signup-wrapper #pmprosp-password-notice,
+.fl-node-<?php echo esc_html( $id ); ?> .pmpro-bb-signup-wrapper .login-link a {
+	display: inline-block;
+	max-width: 100%;
+}
+<?php
+// Container styles.
+?>
+
+
 .fl-node-<?php echo esc_html( $id ); ?> .pmpro-bb-levels-wrapper table {
 	border-collapse: separate;
 	border-spacing: 0;
