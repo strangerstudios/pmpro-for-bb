@@ -27,6 +27,24 @@ FLBuilderCSS::rule( array(
 	),
 ) );
 FLBuilderCSS::rule( array(
+	'selector' => ".fl-node-$id .pmpro-bb-signup-wrapper p",
+	'props'    => array(
+		'color' => $settings->container_text_color,
+	),
+) );
+FLBuilderCSS::rule( array(
+	'selector' => ".fl-node-$id .pmpro-bb-signup-wrapper p a",
+	'props'    => array(
+		'color' => $settings->container_link_color,
+	),
+) );
+FLBuilderCSS::rule( array(
+	'selector' => ".fl-node-$id .pmpro-bb-signup-wrapper p a:hover",
+	'props'    => array(
+		'color' => $settings->container_link_color_hover,
+	),
+) );
+FLBuilderCSS::rule( array(
 	'selector' => ".fl-node-$id .pmpro-bb-signup-wrapper .pmpro_signup_form",
 	'props'    => array(
 		'margin' => $settings->container_align,
@@ -57,6 +75,13 @@ FLBuilderCSS::border_field_rule(
 		'settings'     => $settings,
 		'setting_name' => 'container_border',
 		'selector'     => ".fl-node-$id .pmpro-bb-signup-wrapper .pmpro_signup_form",
+	)
+);
+FLBuilderCSS::typography_field_rule(
+	array(
+		'settings'     => $settings,
+		'setting_name' => 'container_typography',
+		'selector'     => ".fl-node-$id .pmpro-bb-signup-wrapper p",
 	)
 );
 

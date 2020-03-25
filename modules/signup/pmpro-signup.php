@@ -206,6 +206,64 @@ FLBuilder::register_module(
 								'property' => 'margin',
 							),
 						),
+						'container_text_color'       => array(
+							'type'       => 'color',
+							'label'      => __( 'Container General Text Color', 'pmpro-bb' ),
+							'show_alpha' => true,
+							'show_reset' => true,
+							'preview'    => array(
+								'type'  => 'css',
+								'rules' => array(
+									array(
+										'selector' => 'p',
+										'property' => 'color',
+									),
+								),
+							),
+						),
+						'container_link_color'       => array(
+							'type'       => 'color',
+							'label'      => __( 'Container General Link Color', 'pmpro-bb' ),
+							'show_alpha' => true,
+							'show_reset' => true,
+							'preview'    => array(
+								'type'  => 'css',
+								'rules' => array(
+									array(
+										'selector' => 'p a',
+										'property' => 'color',
+									),
+								),
+							),
+						),
+						'container_link_color_hover'       => array(
+							'type'       => 'color',
+							'label'      => __( 'Container General Link Color on Hover', 'pmpro-bb' ),
+							'show_alpha' => true,
+							'show_reset' => true,
+							'preview'    => array(
+								'type'  => 'css',
+								'rules' => array(
+									array(
+										'selector' => 'p a:hover',
+										'property' => 'color',
+									),
+								),
+							),
+						),
+						'container_typography'       => array(
+							'type'       => 'typography',
+							'label'      => __( 'Container General Typography', 'pmpro-bb' ),
+							'responsive' => true,
+							'preview'    => array(
+								'type'  => 'css',
+								'rules' => array(
+									array(
+										'selector' => 'p',
+									),
+								),
+							),
+						),
 						'container_padding'          => array(
 							'type'       => 'dimension',
 							'label'      => __( 'Padding', 'pmpro-bb' ),
