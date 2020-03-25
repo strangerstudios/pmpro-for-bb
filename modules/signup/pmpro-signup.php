@@ -475,9 +475,10 @@ FLBuilder::register_module(
 							'show_alpha' => true,
 							'show_reset' => true,
 							'preview'    => array(
-								'type'     => 'css',
-								'selector' => 'input:not([disabled]):not([type="submit"])::::placeholder',
-								'property' => 'color',
+								'type'      => 'css',
+								'selector'  => 'input:not([disabled]):not([type="submit"])::placeholder',
+								'property'  => 'color',
+								'important' => true,
 							),
 						),
 						'input_background_color'  => array(
