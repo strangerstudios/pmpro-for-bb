@@ -55,7 +55,7 @@ $pmpro_levels = PMPRO_BB_Levels::get_levels();
 				<div class="pmpro-levels-price">
 					<?php
 					if ( pmpro_isLevelFree( $level ) ) {
-						esc_html_e( 'Free', 'pmpro-bb' );
+						esc_html_e( 'Free', 'pmpro-for-bb' );
 					} else {
 						$cost_text       = pmpro_getLevelCost( $level, true, true );
 						$expiration_text = pmpro_getLevelExpiration( $level );
@@ -74,19 +74,19 @@ $pmpro_levels = PMPRO_BB_Levels::get_levels();
 			?>
 			<div class="pmpro-levels-button">
 				<?php if ( empty( $current_user->membership_level->ID ) ) { ?>
-					<a class="pmpro_btn pmpro_btn-select" href="<?php echo esc_url( pmpro_url( 'checkout', '?level=' . $level->id, 'https' ) ); ?>"><?php esc_html_e( 'Select', 'pmpro-bb' ); ?></a>
+					<a class="pmpro_btn pmpro_btn-select" href="<?php echo esc_url( pmpro_url( 'checkout', '?level=' . $level->id, 'https' ) ); ?>"><?php esc_html_e( 'Select', 'pmpro-for-bb' ); ?></a>
 				<?php } elseif ( ! $current_level ) { ?>
-					<a class="pmpro_btn pmpro_btn-select" href="<?php echo esc_url( pmpro_url( 'checkout', '?level=' . $level->id, 'https' ) ); ?>"><?php esc_html_e( 'Select', 'pmpro-bb' ); ?></a>
+					<a class="pmpro_btn pmpro_btn-select" href="<?php echo esc_url( pmpro_url( 'checkout', '?level=' . $level->id, 'https' ) ); ?>"><?php esc_html_e( 'Select', 'pmpro-for-bb' ); ?></a>
 				<?php } elseif ( $current_level ) { ?>
 					<?php
 						// if it's a one-time-payment level, offer a link to renew.
 					if ( pmpro_isLevelExpiringSoon( $current_user->membership_level ) && $current_user->membership_level->allow_signups ) {
 						?>
-								<a class="pmpro_btn pmpro_btn-select" href="<?php echo esc_url( pmpro_url( 'checkout', '?level=' . $level->id, 'https' ) ); ?>"><?php esc_html_e( 'Renew', 'pmpro-bb' ); ?></a>
+								<a class="pmpro_btn pmpro_btn-select" href="<?php echo esc_url( pmpro_url( 'checkout', '?level=' . $level->id, 'https' ) ); ?>"><?php esc_html_e( 'Renew', 'pmpro-for-bb' ); ?></a>
 							<?php
 					} else {
 						?>
-								<a class="pmpro_btn disabled" href="<?php echo esc_url( pmpro_url( 'account' ) ); ?>"><?php esc_html_e( 'Your Level', 'pmpro-bb' ); ?></a>
+								<a class="pmpro_btn disabled" href="<?php echo esc_url( pmpro_url( 'account' ) ); ?>"><?php esc_html_e( 'Your Level', 'pmpro-for-bb' ); ?></a>
 							<?php
 					}
 				}

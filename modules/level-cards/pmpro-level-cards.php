@@ -6,10 +6,10 @@ class PMPRO_BB_Level_Cards_Module extends FLBuilderModule {
 	public function __construct() {
 		parent::__construct(
 			array(
-				'name'            => __( 'Level Cards', 'pmpro-bb' ),
-				'description'     => __( 'Level Cards', 'pmpro-bb' ),
-				'category'        => __( 'Core', 'pmpro-bb' ),
-				'group'           => apply_filters( 'pmpro_bb_whitelabel_category', __( 'PMPro', 'pmpro-bb' ) ),
+				'name'            => __( 'Level Cards', 'pmpro-for-bb' ),
+				'description'     => __( 'Level Cards', 'pmpro-for-bb' ),
+				'category'        => __( 'Core', 'pmpro-for-bb' ),
+				'group'           => apply_filters( 'pmpro_bb_whitelabel_category', __( 'PMPro', 'pmpro-for-bb' ) ),
 				'dir'             => PMPRO_BB_DIR . 'modules/level-cards/',
 				'url'             => PMPRO_BB_URL . 'modules/level-cards/',
 				'editor_export'   => true,
@@ -27,24 +27,24 @@ foreach ( $pmpro_bb_levels as $pmpro_level ) {
 FLBuilder::register_settings_form(
 	'pmprobb_level_card',
 	array(
-		'title' => __( 'Level Cards', 'pmpro-bb' ),
+		'title' => __( 'Level Cards', 'pmpro-for-bb' ),
 		'tabs'  => array(
 			'general' => array(
-				'title'    => __( 'General', 'pmpro-bb' ),
+				'title'    => __( 'General', 'pmpro-for-bb' ),
 				'sections' => array(
 					'general' => array(
 						'title'  => '',
 						'fields' => array(
 							'level'       => array(
 								'type'    => 'select',
-								'label'   => __( 'Select a Level', 'pmpro-bb' ),
+								'label'   => __( 'Select a Level', 'pmpro-for-bb' ),
 								'options' => $pmpro_bb_levels_options,
 							),
 							'level_photo' => array(
 								'type'        => 'photo',
 								'show_remove' => true,
-								'label'       => __( 'Select a Level Image', 'pmpro-bb' ),
-								'help'        => __( 'This option is best suited for square images', 'pmpro-bb' ),
+								'label'       => __( 'Select a Level Image', 'pmpro-for-bb' ),
+								'help'        => __( 'This option is best suited for square images', 'pmpro-for-bb' ),
 							),
 						),
 					),
@@ -60,14 +60,14 @@ FLBuilder::register_module(
 	'PMPRO_BB_Level_Cards_Module',
 	array(
 		'cards'      => array(
-			'title'    => __( 'Cards', 'pmpro-bb' ),
+			'title'    => __( 'Cards', 'pmpro-for-bb' ),
 			'sections' => array(
 				'cards' => array(
-					'title'  => __( 'Cards', 'pmpro-bb' ),
+					'title'  => __( 'Cards', 'pmpro-for-bb' ),
 					'fields' => array(
 						'card' => array(
 							'type'         => 'form',
-							'label'        => __( 'Card', 'pmpro-bb' ),
+							'label'        => __( 'Card', 'pmpro-for-bb' ),
 							'form'         => 'pmprobb_level_card',
 							'multiple'     => true,
 							'preview_text' => 'level',
@@ -77,14 +77,14 @@ FLBuilder::register_module(
 			),
 		),
 		'styles'     => array(
-			'title'    => __( 'Card Styles', 'pmpro-bb' ),
+			'title'    => __( 'Card Styles', 'pmpro-for-bb' ),
 			'sections' => array(
 				'layout'  => array(
-					'title'  => __( 'Layout', 'pmpro-bb' ),
+					'title'  => __( 'Layout', 'pmpro-for-bb' ),
 					'fields' => array(
 						'card_width'          => array(
 							'type'    => 'unit',
-							'label'   => __( 'Card Width', 'pmpro-bb' ),
+							'label'   => __( 'Card Width', 'pmpro-for-bb' ),
 							'slider'  => array(
 								'min'  => 150,
 								'max'  => 1000,
@@ -94,51 +94,51 @@ FLBuilder::register_module(
 						),
 						'display_level'       => array(
 							'type'    => 'select',
-							'label'   => __( 'Display Level Name', 'pmpro-bb' ),
+							'label'   => __( 'Display Level Name', 'pmpro-for-bb' ),
 							'options' => array(
-								'no'  => __( 'No', 'pmpro-bb' ),
-								'yes' => __( 'Yes', 'pmpro-bb' ),
+								'no'  => __( 'No', 'pmpro-for-bb' ),
+								'yes' => __( 'Yes', 'pmpro-for-bb' ),
 							),
 							'default' => 'yes',
 						),
 						'display_photo'       => array(
 							'type'    => 'select',
-							'label'   => __( 'Display Photo', 'pmpro-bb' ),
+							'label'   => __( 'Display Photo', 'pmpro-for-bb' ),
 							'options' => array(
-								'no'  => __( 'No', 'pmpro-bb' ),
-								'yes' => __( 'Yes', 'pmpro-bb' ),
+								'no'  => __( 'No', 'pmpro-for-bb' ),
+								'yes' => __( 'Yes', 'pmpro-for-bb' ),
 							),
 							'default' => 'yes',
 						),
 						'display_description' => array(
 							'type'    => 'select',
-							'label'   => __( 'Display Description', 'pmpro-bb' ),
+							'label'   => __( 'Display Description', 'pmpro-for-bb' ),
 							'options' => array(
-								'no'  => __( 'No', 'pmpro-bb' ),
-								'yes' => __( 'Yes', 'pmpro-bb' ),
+								'no'  => __( 'No', 'pmpro-for-bb' ),
+								'yes' => __( 'Yes', 'pmpro-for-bb' ),
 							),
 							'default' => 'no',
 						),
 						'display_price'       => array(
 							'type'    => 'select',
-							'label'   => __( 'Display Price', 'pmpro-bb' ),
+							'label'   => __( 'Display Price', 'pmpro-for-bb' ),
 							'options' => array(
-								'no'  => __( 'No', 'pmpro-bb' ),
-								'yes' => __( 'Yes', 'pmpro-bb' ),
+								'no'  => __( 'No', 'pmpro-for-bb' ),
+								'yes' => __( 'Yes', 'pmpro-for-bb' ),
 							),
 							'default' => 'yes',
 						),
 						'photo_appearance'    => array(
 							'type'    => 'select',
-							'label'   => __( 'Select a Photo Appearance', 'pmpro-bb' ),
+							'label'   => __( 'Select a Photo Appearance', 'pmpro-for-bb' ),
 							'options' => array(
-								'square'  => __( 'Square', 'pmpro-bb' ),
-								'rounded' => __( 'Rounded', 'pmpro-bb' ),
+								'square'  => __( 'Square', 'pmpro-for-bb' ),
+								'rounded' => __( 'Rounded', 'pmpro-for-bb' ),
 							),
 						),
 						'photo_border'        => array(
 							'type'    => 'border',
-							'label'   => __( 'Photo Border', 'pmpro-bb' ),
+							'label'   => __( 'Photo Border', 'pmpro-for-bb' ),
 							'preview' => array(
 								'type'     => 'css',
 								'property' => 'border',
@@ -147,7 +147,7 @@ FLBuilder::register_module(
 						),
 						'photo_align'         => array(
 							'type'    => 'align',
-							'label'   => __( 'Photo Alignment', 'pmpro-bb' ),
+							'label'   => __( 'Photo Alignment', 'pmpro-for-bb' ),
 							'default' => 'left',
 							'preview' => array(
 								'type'     => 'css',
@@ -157,7 +157,7 @@ FLBuilder::register_module(
 						),
 						'photo_max_width'     => array(
 							'type'       => 'unit',
-							'label'      => __( 'Select a Photo Max Width', 'pmpro-bb' ),
+							'label'      => __( 'Select a Photo Max Width', 'pmpro-for-bb' ),
 							'responsive' => true,
 							'default'    => 500,
 							'preview'    => array(
@@ -170,11 +170,11 @@ FLBuilder::register_module(
 					),
 				),
 				'display' => array(
-					'title'  => __( 'Card Styles', 'pmpro-bb' ),
+					'title'  => __( 'Card Styles', 'pmpro-for-bb' ),
 					'fields' => array(
 						'padding'                      => array(
 							'type'       => 'dimension',
-							'label'      => __( 'Card Padding', 'pmpro-bb' ),
+							'label'      => __( 'Card Padding', 'pmpro-for-bb' ),
 							'responsive' => true,
 							'preview'    => array(
 								'type'     => 'css',
@@ -184,12 +184,12 @@ FLBuilder::register_module(
 						),
 						'background_type'              => array(
 							'type'    => 'select',
-							'label'   => __( 'Display a Background Type', 'pmpro-bb' ),
+							'label'   => __( 'Display a Background Type', 'pmpro-for-bb' ),
 							'default' => 'yes',
 							'options' => array(
-								'none'     => __( 'None', 'pmpro-bb' ),
-								'color'    => __( 'Color', 'pmpro-bb' ),
-								'gradient' => __( 'Gradient', 'pmpro-bb' ),
+								'none'     => __( 'None', 'pmpro-for-bb' ),
+								'color'    => __( 'Color', 'pmpro-for-bb' ),
+								'gradient' => __( 'Gradient', 'pmpro-for-bb' ),
 							),
 							'toggle'  => array(
 								'color'    => array(
@@ -208,7 +208,7 @@ FLBuilder::register_module(
 						),
 						'background_color'             => array(
 							'type'       => 'color',
-							'label'      => __( 'Card Background Color', 'pmpro-bb' ),
+							'label'      => __( 'Card Background Color', 'pmpro-for-bb' ),
 							'show_reset' => true,
 							'show_alpha' => true,
 							'preview'    => array(
@@ -219,7 +219,7 @@ FLBuilder::register_module(
 						),
 						'background_color_hover'       => array(
 							'type'       => 'color',
-							'label'      => __( 'Card Background Color on Hover', 'pmpro-bb' ),
+							'label'      => __( 'Card Background Color on Hover', 'pmpro-for-bb' ),
 							'show_reset' => true,
 							'show_alpha' => true,
 							'preview'    => array(
@@ -230,7 +230,7 @@ FLBuilder::register_module(
 						),
 						'background_gradient'          => array(
 							'type'       => 'gradient',
-							'label'      => __( 'Card Gradient', 'pmpro-bb' ),
+							'label'      => __( 'Card Gradient', 'pmpro-for-bb' ),
 							'show_reset' => true,
 							'preview'    => array(
 								'type'     => 'css',
@@ -240,7 +240,7 @@ FLBuilder::register_module(
 						),
 						'background_gradient_hover'    => array(
 							'type'       => 'gradient',
-							'label'      => __( 'Card Gradient on Hover', 'pmpro-bb' ),
+							'label'      => __( 'Card Gradient on Hover', 'pmpro-for-bb' ),
 							'show_reset' => true,
 							'preview'    => array(
 								'type'     => 'css',
@@ -250,7 +250,7 @@ FLBuilder::register_module(
 						),
 						'border'                       => array(
 							'type'    => 'border',
-							'label'   => __( 'Card Border', 'pmpro-bb' ),
+							'label'   => __( 'Card Border', 'pmpro-for-bb' ),
 							'preview' => array(
 								'type'     => 'css',
 								'property' => 'border',
@@ -259,7 +259,7 @@ FLBuilder::register_module(
 						),
 						'border_hover'                 => array(
 							'type'    => 'border',
-							'label'   => __( 'Card Border on Hover', 'pmpro-bb' ),
+							'label'   => __( 'Card Border on Hover', 'pmpro-for-bb' ),
 							'preview' => array(
 								'type'     => 'css',
 								'property' => 'border',
@@ -268,7 +268,7 @@ FLBuilder::register_module(
 						),
 						'level_text_color'             => array(
 							'type'       => 'color',
-							'label'      => __( 'Level Text Color', 'pmpro-bb' ),
+							'label'      => __( 'Level Text Color', 'pmpro-for-bb' ),
 							'show_reset' => true,
 							'show_alpha' => true,
 							'preview'    => array(
@@ -279,7 +279,7 @@ FLBuilder::register_module(
 						),
 						'level_text_color_hover'       => array(
 							'type'       => 'color',
-							'label'      => __( 'Level Text Color on Hover', 'pmpro-bb' ),
+							'label'      => __( 'Level Text Color on Hover', 'pmpro-for-bb' ),
 							'show_reset' => true,
 							'show_alpha' => true,
 							'preview'    => array(
@@ -290,7 +290,7 @@ FLBuilder::register_module(
 						),
 						'description_text_color'       => array(
 							'type'       => 'color',
-							'label'      => __( 'Description Text Color', 'pmpro-bb' ),
+							'label'      => __( 'Description Text Color', 'pmpro-for-bb' ),
 							'show_reset' => true,
 							'show_alpha' => true,
 							'preview'    => array(
@@ -301,7 +301,7 @@ FLBuilder::register_module(
 						),
 						'description_text_color_hover' => array(
 							'type'       => 'color',
-							'label'      => __( 'Description Text Color on Hover', 'pmpro-bb' ),
+							'label'      => __( 'Description Text Color on Hover', 'pmpro-for-bb' ),
 							'show_reset' => true,
 							'show_alpha' => true,
 							'preview'    => array(
@@ -312,7 +312,7 @@ FLBuilder::register_module(
 						),
 						'price_text_color'             => array(
 							'type'       => 'color',
-							'label'      => __( 'Price Text Color', 'pmpro-bb' ),
+							'label'      => __( 'Price Text Color', 'pmpro-for-bb' ),
 							'show_reset' => true,
 							'show_alpha' => true,
 							'preview'    => array(
@@ -323,7 +323,7 @@ FLBuilder::register_module(
 						),
 						'price_text_color_hover'       => array(
 							'type'       => 'color',
-							'label'      => __( 'Price Text Color on Hover', 'pmpro-bb' ),
+							'label'      => __( 'Price Text Color on Hover', 'pmpro-for-bb' ),
 							'show_reset' => true,
 							'show_alpha' => true,
 							'preview'    => array(
@@ -337,14 +337,14 @@ FLBuilder::register_module(
 			),
 		),
 		'margins'    => array(
-			'title'    => __( 'Margins', 'pmpro-bb' ),
+			'title'    => __( 'Margins', 'pmpro-for-bb' ),
 			'sections' => array(
 				'styles' => array(
-					'title'  => __( 'Margins', 'pmpro-bb' ),
+					'title'  => __( 'Margins', 'pmpro-for-bb' ),
 					'fields' => array(
 						'level_margin'       => array(
 							'type'       => 'dimension',
-							'label'      => __( 'Level Name Margin', 'pmpro-bb' ),
+							'label'      => __( 'Level Name Margin', 'pmpro-for-bb' ),
 							'responsive' => true,
 							'preview'    => array(
 								'type'     => 'css',
@@ -354,7 +354,7 @@ FLBuilder::register_module(
 						),
 						'description_margin' => array(
 							'type'       => 'dimension',
-							'label'      => __( 'Level Description Margin', 'pmpro-bb' ),
+							'label'      => __( 'Level Description Margin', 'pmpro-for-bb' ),
 							'responsive' => true,
 							'preview'    => array(
 								'type'     => 'css',
@@ -364,7 +364,7 @@ FLBuilder::register_module(
 						),
 						'photo_margin'       => array(
 							'type'       => 'dimension',
-							'label'      => __( 'Level Photo Margin', 'pmpro-bb' ),
+							'label'      => __( 'Level Photo Margin', 'pmpro-for-bb' ),
 							'responsive' => true,
 							'preview'    => array(
 								'type'     => 'css',
@@ -374,7 +374,7 @@ FLBuilder::register_module(
 						),
 						'price_margin'       => array(
 							'type'       => 'dimension',
-							'label'      => __( 'Level Price Margin', 'pmpro-bb' ),
+							'label'      => __( 'Level Price Margin', 'pmpro-for-bb' ),
 							'responsive' => true,
 							'preview'    => array(
 								'type'     => 'css',
@@ -384,7 +384,7 @@ FLBuilder::register_module(
 						),
 						'button_margin'      => array(
 							'type'       => 'dimension',
-							'label'      => __( 'Level Button Margin', 'pmpro-bb' ),
+							'label'      => __( 'Level Button Margin', 'pmpro-for-bb' ),
 							'responsive' => true,
 							'preview'    => array(
 								'type'     => 'css',
@@ -397,14 +397,14 @@ FLBuilder::register_module(
 			),
 		),
 		'button'     => array(
-			'title'    => __( 'Button', 'pmpro-bb' ),
+			'title'    => __( 'Button', 'pmpro-for-bb' ),
 			'sections' => array(
 				'styles' => array(
-					'title'  => __( 'Button', 'pmpro-bb' ),
+					'title'  => __( 'Button', 'pmpro-for-bb' ),
 					'fields' => array(
 						'button_align'                  => array(
 							'type'    => 'align',
-							'label'   => __( 'Button Alignment', 'pmpro-bb' ),
+							'label'   => __( 'Button Alignment', 'pmpro-for-bb' ),
 							'default' => 'left',
 							'preview' => array(
 								'type'     => 'css',
@@ -414,16 +414,16 @@ FLBuilder::register_module(
 						),
 						'button_width'                  => array(
 							'type'    => 'select',
-							'label'   => __( 'Button Width', 'pmpro-bb' ),
+							'label'   => __( 'Button Width', 'pmpro-for-bb' ),
 							'default' => 'inline',
 							'options' => array(
-								'inline' => __( 'Default', 'pmpro-bb' ),
-								'full'   => __( 'Full Width', 'pmpro-bb' ),
+								'inline' => __( 'Default', 'pmpro-for-bb' ),
+								'full'   => __( 'Full Width', 'pmpro-for-bb' ),
 							),
 						),
 						'button_text_color'             => array(
 							'type'       => 'color',
-							'label'      => __( 'Button Text Color', 'pmpro-bb' ),
+							'label'      => __( 'Button Text Color', 'pmpro-for-bb' ),
 							'show_alpha' => true,
 							'show_reset' => true,
 							'preview'    => array(
@@ -434,7 +434,7 @@ FLBuilder::register_module(
 						),
 						'button_text_color_hover'       => array(
 							'type'       => 'color',
-							'label'      => __( 'Button Text Color on Hover', 'pmpro-bb' ),
+							'label'      => __( 'Button Text Color on Hover', 'pmpro-for-bb' ),
 							'show_alpha' => true,
 							'show_reset' => true,
 							'preview'    => array(
@@ -445,7 +445,7 @@ FLBuilder::register_module(
 						),
 						'button_background_color'       => array(
 							'type'       => 'color',
-							'label'      => __( 'Button Background Color', 'pmpro-bb' ),
+							'label'      => __( 'Button Background Color', 'pmpro-for-bb' ),
 							'show_alpha' => true,
 							'show_reset' => true,
 							'preview'    => array(
@@ -456,7 +456,7 @@ FLBuilder::register_module(
 						),
 						'button_background_color_hover' => array(
 							'type'       => 'color',
-							'label'      => __( 'Button Background Color on Hover', 'pmpro-bb' ),
+							'label'      => __( 'Button Background Color on Hover', 'pmpro-for-bb' ),
 							'show_alpha' => true,
 							'show_reset' => true,
 							'preview'    => array(
@@ -467,7 +467,7 @@ FLBuilder::register_module(
 						),
 						'button_border'                 => array(
 							'type'    => 'border',
-							'label'   => __( 'Button Border', 'pmpro-bb' ),
+							'label'   => __( 'Button Border', 'pmpro-for-bb' ),
 							'preview' => array(
 								'type'     => 'css',
 								'selector' => '.pmpro-levels-button a',
@@ -476,7 +476,7 @@ FLBuilder::register_module(
 						),
 						'button_border_hover'           => array(
 							'type'    => 'border',
-							'label'   => __( 'Button Border on Hover', 'pmpro-bb' ),
+							'label'   => __( 'Button Border on Hover', 'pmpro-for-bb' ),
 							'preview' => array(
 								'type'     => 'css',
 								'selector' => '.pmpro-levels-button a:hover',
@@ -485,7 +485,7 @@ FLBuilder::register_module(
 						),
 						'button_padding'                => array(
 							'type'    => 'dimension',
-							'label'   => __( 'Button Padding', 'pmpro-bb' ),
+							'label'   => __( 'Button Padding', 'pmpro-for-bb' ),
 							'preview' => array(
 								'type'     => 'css',
 								'selector' => '.pmpro-levels-button a',
@@ -498,14 +498,14 @@ FLBuilder::register_module(
 			),
 		),
 		'typography' => array(
-			'title'    => __( 'Typography', 'pmpro-bb' ),
+			'title'    => __( 'Typography', 'pmpro-for-bb' ),
 			'sections' => array(
 				'typography' => array(
-					'title'  => __( 'Typography', 'pmpro-bb' ),
+					'title'  => __( 'Typography', 'pmpro-for-bb' ),
 					'fields' => array(
 						'level_typography'       => array(
 							'type'       => 'typography',
-							'label'      => __( 'Level Name Typography', 'pmpro-bb' ),
+							'label'      => __( 'Level Name Typography', 'pmpro-for-bb' ),
 							'responsive' => true,
 							'preview'    => array(
 								'type'     => 'css',
@@ -514,7 +514,7 @@ FLBuilder::register_module(
 						),
 						'description_typography' => array(
 							'type'       => 'typography',
-							'label'      => __( 'Level Description Typography', 'pmpro-bb' ),
+							'label'      => __( 'Level Description Typography', 'pmpro-for-bb' ),
 							'responsive' => true,
 							'preview'    => array(
 								'type'     => 'css',
@@ -523,7 +523,7 @@ FLBuilder::register_module(
 						),
 						'price_typography'       => array(
 							'type'       => 'typography',
-							'label'      => __( 'Level Price Typography', 'pmpro-bb' ),
+							'label'      => __( 'Level Price Typography', 'pmpro-for-bb' ),
 							'responsive' => true,
 							'preview'    => array(
 								'type'     => 'css',
@@ -532,7 +532,7 @@ FLBuilder::register_module(
 						),
 						'button_typography'      => array(
 							'type'       => 'typography',
-							'label'      => __( 'Button Typography', 'pmpro-bb' ),
+							'label'      => __( 'Button Typography', 'pmpro-for-bb' ),
 							'responsive' => true,
 							'preview'    => array(
 								'type'     => 'css',

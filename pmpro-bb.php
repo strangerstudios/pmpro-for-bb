@@ -4,11 +4,11 @@
  * Plugin URI: https://paidmembershipspro.com
  * Description: Paid Memberships Pro modules for Beaver Builder
  * Version: 1.0.0
- * Author: Ronald Huereca
- * Author URI: https://mediaron.com
+ * Author: Paid Memberships Pro
+ * Author URI: https://paidmembershipspro.com
  * Requires at least: 5.0
  * Contributors: ronalfy
- * Text Domain: pmpro-bb
+ * Text Domain: pmpro-for-bb
  * Domain Path: /languages
  */
 define( 'PMPRO_BB_PLUGIN_NAME', 'Paid Memberships Pro Modules for Beaver Builder' );
@@ -30,7 +30,7 @@ class PMPRO_BB {
 		add_action( 'plugin_loaded', array( $this, 'plugins_loaded' ), 9 );
 
 		// Load text domain.
-		load_plugin_textdomain( 'pmpro-bb', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+		load_plugin_textdomain( 'pmpro-for-bb', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 	}
 
 	/**

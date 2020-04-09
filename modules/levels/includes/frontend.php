@@ -30,8 +30,8 @@ if ( ! empty( $pmpro_levels ) ) :
 		<table id="pmpro_levels_table" class="pmpro_table pmpro_checkout">
 			<thead>
 				<tr>
-					<th><?php esc_html_e( 'Level', 'pmpro-bb' ); ?></th>
-					<th><?php esc_html_e( 'Price', 'pmpro-bb' ); ?></th>	
+					<th><?php esc_html_e( 'Level', 'pmpro-for-bb' ); ?></th>
+					<th><?php esc_html_e( 'Price', 'pmpro-for-bb' ); ?></th>	
 					<th>&nbsp;</th>
 				</tr>
 			</thead>
@@ -58,7 +58,7 @@ if ( ! empty( $pmpro_levels ) ) :
 					<td>
 						<?php
 						if ( pmpro_isLevelFree( $level ) ) {
-							$cost_text = '<strong>' . esc_html__( 'Free', 'pmpro-bb' ) . '</strong>';
+							$cost_text = '<strong>' . esc_html__( 'Free', 'pmpro-for-bb' ) . '</strong>';
 						} else {
 							$cost_text = pmpro_getLevelCost( $level, true, true );
 						}
@@ -74,19 +74,19 @@ if ( ! empty( $pmpro_levels ) ) :
 					</td>
 					<td>
 						<?php if ( empty( $current_user->membership_level->ID ) ) { ?>
-						<a class="pmpro_btn pmpro_btn-select" href="<?php echo esc_url( pmpro_url( 'checkout', '?level=' . $level->id, 'https' ) ); ?>"><?php esc_html_e( 'Select', 'pmpro-bb' ); ?></a>
+						<a class="pmpro_btn pmpro_btn-select" href="<?php echo esc_url( pmpro_url( 'checkout', '?level=' . $level->id, 'https' ) ); ?>"><?php esc_html_e( 'Select', 'pmpro-for-bb' ); ?></a>
 					<?php } elseif ( ! $current_level ) { ?>
-						<a class="pmpro_btn pmpro_btn-select" href="<?php echo esc_url( pmpro_url( 'checkout', '?level=' . $level->id, 'https' ) ); ?>"><?php esc_html_e( 'Select', 'pmpro-bb' ); ?></a>
+						<a class="pmpro_btn pmpro_btn-select" href="<?php echo esc_url( pmpro_url( 'checkout', '?level=' . $level->id, 'https' ) ); ?>"><?php esc_html_e( 'Select', 'pmpro-for-bb' ); ?></a>
 					<?php } elseif ( $current_level ) { ?>
 						<?php
 							// if it's a one-time-payment level, offer a link to renew.
 						if ( pmpro_isLevelExpiringSoon( $current_user->membership_level ) && $current_user->membership_level->allow_signups ) {
 							?>
-									<a class="pmpro_btn pmpro_btn-select" href="<?php echo esc_url( pmpro_url( 'checkout', '?level=' . $level->id, 'https' ) ); ?>"><?php esc_html_e( 'Renew', 'pmpro-bb' ); ?></a>
+									<a class="pmpro_btn pmpro_btn-select" href="<?php echo esc_url( pmpro_url( 'checkout', '?level=' . $level->id, 'https' ) ); ?>"><?php esc_html_e( 'Renew', 'pmpro-for-bb' ); ?></a>
 								<?php
 						} else {
 							?>
-									<a class="pmpro_btn disabled" href="<?php echo esc_url( pmpro_url( 'account' ) ); ?>"><?php esc_html_e( 'Your Level', 'pmpro-bb' ); ?></a>
+									<a class="pmpro_btn disabled" href="<?php echo esc_url( pmpro_url( 'account' ) ); ?>"><?php esc_html_e( 'Your Level', 'pmpro-for-bb' ); ?></a>
 								<?php
 						}
 						?>

@@ -6,10 +6,10 @@ class PMPRO_BB_Signup_Module extends FLBuilderModule {
 	public function __construct() {
 		parent::__construct(
 			array(
-				'name'            => __( 'Signup Module', 'pmpro-bb' ),
-				'description'     => __( 'Signup Module', 'pmpro-bb' ),
-				'category'        => __( 'Core', 'pmpro-bb' ),
-				'group'           => apply_filters( 'pmpro_bb_whitelabel_category', __( 'PMPro', 'pmpro-bb' ) ),
+				'name'            => __( 'Signup Module', 'pmpro-for-bb' ),
+				'description'     => __( 'Signup Module', 'pmpro-for-bb' ),
+				'category'        => __( 'Core', 'pmpro-for-bb' ),
+				'group'           => apply_filters( 'pmpro_bb_whitelabel_category', __( 'PMPro', 'pmpro-for-bb' ) ),
 				'dir'             => PMPRO_BB_DIR . 'modules/signup/',
 				'url'             => PMPRO_BB_URL . 'modules/signup/',
 				'editor_export'   => true,
@@ -42,68 +42,68 @@ FLBuilder::register_module(
 	'PMPRO_BB_Signup_Module',
 	array(
 		'options'       => array(
-			'title'    => __( 'Options', 'pmpro-bb' ),
+			'title'    => __( 'Options', 'pmpro-for-bb' ),
 			'sections' => array(
 				'options' => array(
-					'title'  => __( 'Options', 'pmpro-bb' ),
+					'title'  => __( 'Options', 'pmpro-for-bb' ),
 					'fields' => array(
 						'level'         => array(
 							'type'    => 'select',
-							'label'   => __( 'Select a Level', 'pmpro-bb' ),
+							'label'   => __( 'Select a Level', 'pmpro-for-bb' ),
 							'options' => $pmpro_bb_levels_options,
 						),
 						'login'         => array(
 							'type'    => 'select',
-							'label'   => __( 'Show Login Link?', 'pmpro-bb' ),
+							'label'   => __( 'Show Login Link?', 'pmpro-for-bb' ),
 							'options' => array(
-								'0' => __( 'No', 'pmpro-bb' ),
-								'1' => __( 'Yes', 'pmpro-bb' ),
+								'0' => __( 'No', 'pmpro-for-bb' ),
+								'1' => __( 'Yes', 'pmpro-for-bb' ),
 							),
 							'default' => 'yes',
 						),
 						'login'         => array(
 							'type'    => 'select',
-							'label'   => __( 'Show Login Link?', 'pmpro-bb' ),
+							'label'   => __( 'Show Login Link?', 'pmpro-for-bb' ),
 							'options' => array(
-								'no'  => __( 'No', 'pmpro-bb' ),
-								'yes' => __( 'Yes', 'pmpro-bb' ),
+								'no'  => __( 'No', 'pmpro-for-bb' ),
+								'yes' => __( 'Yes', 'pmpro-for-bb' ),
 							),
 							'default' => 'yes',
 						),
 						'hide_labels'   => array(
 							'type'    => 'select',
-							'label'   => __( 'Hide Labels?', 'pmpro-bb' ),
+							'label'   => __( 'Hide Labels?', 'pmpro-for-bb' ),
 							'options' => array(
-								'no'  => __( 'No', 'pmpro-bb' ),
-								'yes' => __( 'Yes', 'pmpro-bb' ),
+								'no'  => __( 'No', 'pmpro-for-bb' ),
+								'yes' => __( 'Yes', 'pmpro-for-bb' ),
 							),
 							'default' => 'no',
 						),
 						'hide_labels'   => array(
 							'type'    => 'select',
-							'label'   => __( 'Hide Labels?', 'pmpro-bb' ),
+							'label'   => __( 'Hide Labels?', 'pmpro-for-bb' ),
 							'options' => array(
-								'no'  => __( 'No', 'pmpro-bb' ),
-								'yes' => __( 'Yes', 'pmpro-bb' ),
+								'no'  => __( 'No', 'pmpro-for-bb' ),
+								'yes' => __( 'Yes', 'pmpro-for-bb' ),
 							),
 							'default' => 'no',
 						),
 						'custom_fields' => array(
 							'type'    => 'select',
-							'label'   => __( 'Show Custom Fields?', 'pmpro-bb' ),
+							'label'   => __( 'Show Custom Fields?', 'pmpro-for-bb' ),
 							'options' => array(
-								'no'  => __( 'No', 'pmpro-bb' ),
-								'yes' => __( 'Yes', 'pmpro-bb' ),
+								'no'  => __( 'No', 'pmpro-for-bb' ),
+								'yes' => __( 'Yes', 'pmpro-for-bb' ),
 							),
 							'default' => 'yes',
 						),
 						'redirect'      => array(
 							'type'    => 'select',
-							'label'   => __( 'Redirect Page', 'pmpro-bb' ),
+							'label'   => __( 'Redirect Page', 'pmpro-for-bb' ),
 							'options' => array(
-								'referer' => __( 'Referer', 'pmpro-bb' ),
-								'account' => __( 'Account Page', 'pmpro-bb' ),
-								'custom'  => __( 'Custom URL', 'pmpro-bb' ),
+								'referer' => __( 'Referer', 'pmpro-for-bb' ),
+								'account' => __( 'Account Page', 'pmpro-for-bb' ),
+								'custom'  => __( 'Custom URL', 'pmpro-for-bb' ),
 							),
 							'default' => 'referer',
 							'toggle'  => array(
@@ -114,15 +114,15 @@ FLBuilder::register_module(
 						),
 						'redirect_url'  => array(
 							'type'  => 'link',
-							'label' => __( 'Redirect Custom URL', 'pmpro-bb' ),
+							'label' => __( 'Redirect Custom URL', 'pmpro-for-bb' ),
 						),
 						'title'         => array(
 							'type'    => 'select',
-							'label'   => __( 'Show Title?', 'pmpro-bb' ),
+							'label'   => __( 'Show Title?', 'pmpro-for-bb' ),
 							'options' => array(
-								'no'     => __( 'No', 'pmpro-bb' ),
-								'yes'    => __( 'Yes', 'pmpro-bb' ),
-								'custom' => __( 'Custom Text', 'pmpro-bb' ),
+								'no'     => __( 'No', 'pmpro-for-bb' ),
+								'yes'    => __( 'Yes', 'pmpro-for-bb' ),
+								'custom' => __( 'Custom Text', 'pmpro-for-bb' ),
 							),
 							'default' => 'yes',
 							'toggle'  => array(
@@ -133,15 +133,15 @@ FLBuilder::register_module(
 						),
 						'title_custom'  => array(
 							'type'  => 'text',
-							'label' => __( 'Custom Title', 'pmpro-bb' ),
+							'label' => __( 'Custom Title', 'pmpro-for-bb' ),
 						),
 						'intro'         => array(
 							'type'    => 'select',
-							'label'   => __( 'Show Intro?', 'pmpro-bb' ),
+							'label'   => __( 'Show Intro?', 'pmpro-for-bb' ),
 							'options' => array(
-								'no'     => __( 'No', 'pmpro-bb' ),
-								'yes'    => __( 'Yes', 'pmpro-bb' ),
-								'custom' => __( 'Custom Text', 'pmpro-bb' ),
+								'no'     => __( 'No', 'pmpro-for-bb' ),
+								'yes'    => __( 'Yes', 'pmpro-for-bb' ),
+								'custom' => __( 'Custom Text', 'pmpro-for-bb' ),
 							),
 							'default' => 'no',
 							'toggle'  => array(
@@ -152,35 +152,35 @@ FLBuilder::register_module(
 						),
 						'intro_custom'  => array(
 							'type'  => 'text',
-							'label' => __( 'Custom Intro', 'pmpro-bb' ),
+							'label' => __( 'Custom Intro', 'pmpro-for-bb' ),
 						),
 						'short'         => array(
 							'type'    => 'select',
-							'label'   => __( 'Display', 'pmpro-bb' ),
+							'label'   => __( 'Display', 'pmpro-for-bb' ),
 							'options' => array(
-								'full'      => __( 'Full Display', 'pmpro-bb' ),
-								'condensed' => __( 'Condensed Display', 'pmpro-bb' ),
-								'emailonly' => __( 'Email Only', 'pmpro-bb' ),
+								'full'      => __( 'Full Display', 'pmpro-for-bb' ),
+								'condensed' => __( 'Condensed Display', 'pmpro-for-bb' ),
+								'emailonly' => __( 'Email Only', 'pmpro-for-bb' ),
 							),
 						),
 						'submit_button' => array(
 							'type'    => 'text',
-							'label'   => __( 'Submit Button', 'pmpro-bb' ),
-							'default' => __( 'Sign Up Now', 'pmpro-bb' ),
+							'label'   => __( 'Submit Button', 'pmpro-for-bb' ),
+							'default' => __( 'Sign Up Now', 'pmpro-for-bb' ),
 						),
 					),
 				),
 			),
 		),
 		'styles'        => array(
-			'title'    => __( 'Styles', 'pmpro-bb' ),
+			'title'    => __( 'Styles', 'pmpro-for-bb' ),
 			'sections' => array(
 				'container' => array(
-					'title'  => __( 'Container Settings', 'pmpro-bb' ),
+					'title'  => __( 'Container Settings', 'pmpro-for-bb' ),
 					'fields' => array(
 						'container_max_width'        => array(
 							'type'         => 'unit',
-							'label'        => __( 'Container Max-Width', 'pmpro-bb' ),
+							'label'        => __( 'Container Max-Width', 'pmpro-for-bb' ),
 							'units'        => array( 'px', 'vw', '%' ),
 							'default_unit' => '%',
 							'preview'      => array(
@@ -193,7 +193,7 @@ FLBuilder::register_module(
 						),
 						'container_align'            => array(
 							'type'    => 'align',
-							'label'   => __( 'Alignment', 'pmpro-bb' ),
+							'label'   => __( 'Alignment', 'pmpro-for-bb' ),
 							'values'  => array(
 								'left'   => '0 auto 0 0',
 								'center' => '0 auto',
@@ -208,7 +208,7 @@ FLBuilder::register_module(
 						),
 						'container_text_color'       => array(
 							'type'       => 'color',
-							'label'      => __( 'Container General Text Color', 'pmpro-bb' ),
+							'label'      => __( 'Container General Text Color', 'pmpro-for-bb' ),
 							'show_alpha' => true,
 							'show_reset' => true,
 							'preview'    => array(
@@ -223,7 +223,7 @@ FLBuilder::register_module(
 						),
 						'container_link_color'       => array(
 							'type'       => 'color',
-							'label'      => __( 'Container General Link Color', 'pmpro-bb' ),
+							'label'      => __( 'Container General Link Color', 'pmpro-for-bb' ),
 							'show_alpha' => true,
 							'show_reset' => true,
 							'preview'    => array(
@@ -238,7 +238,7 @@ FLBuilder::register_module(
 						),
 						'container_link_color_hover'       => array(
 							'type'       => 'color',
-							'label'      => __( 'Container General Link Color on Hover', 'pmpro-bb' ),
+							'label'      => __( 'Container General Link Color on Hover', 'pmpro-for-bb' ),
 							'show_alpha' => true,
 							'show_reset' => true,
 							'preview'    => array(
@@ -253,7 +253,7 @@ FLBuilder::register_module(
 						),
 						'container_typography'       => array(
 							'type'       => 'typography',
-							'label'      => __( 'Container General Typography', 'pmpro-bb' ),
+							'label'      => __( 'Container General Typography', 'pmpro-for-bb' ),
 							'responsive' => true,
 							'preview'    => array(
 								'type'  => 'css',
@@ -266,7 +266,7 @@ FLBuilder::register_module(
 						),
 						'container_padding'          => array(
 							'type'       => 'dimension',
-							'label'      => __( 'Padding', 'pmpro-bb' ),
+							'label'      => __( 'Padding', 'pmpro-for-bb' ),
 							'responsive' => true,
 							'preview'    => array(
 								'type'     => 'css',
@@ -276,7 +276,7 @@ FLBuilder::register_module(
 						),
 						'container_background_color' => array(
 							'type'       => 'color',
-							'label'      => __( 'Background Color', 'pmpro-bb' ),
+							'label'      => __( 'Background Color', 'pmpro-for-bb' ),
 							'show_alpha' => true,
 							'show_reset' => true,
 							'preview'    => array(
@@ -287,7 +287,7 @@ FLBuilder::register_module(
 						),
 						'container_border'           => array(
 							'type'    => 'border',
-							'label'   => __( 'Border', 'pmpro-bb' ),
+							'label'   => __( 'Border', 'pmpro-for-bb' ),
 							'preview' => array(
 								'type'     => 'css',
 								'selector' => '.pmpro_signup_form',
@@ -297,11 +297,11 @@ FLBuilder::register_module(
 					),
 				),
 				'heading'   => array(
-					'title'  => __( 'Heading', 'pmpro-bb' ),
+					'title'  => __( 'Heading', 'pmpro-for-bb' ),
 					'fields' => array(
 						'heading_color'      => array(
 							'type'       => 'color',
-							'label'      => __( 'Heading Text Color', 'pmpro-bb' ),
+							'label'      => __( 'Heading Text Color', 'pmpro-for-bb' ),
 							'show_alpha' => true,
 							'show_reset' => true,
 							'preview'    => array(
@@ -312,7 +312,7 @@ FLBuilder::register_module(
 						),
 						'heading_padding'    => array(
 							'type'       => 'dimension',
-							'label'      => __( 'Heading Padding', 'pmpro-bb' ),
+							'label'      => __( 'Heading Padding', 'pmpro-for-bb' ),
 							'responsive' => true,
 							'preview'    => array(
 								'type'     => 'css',
@@ -323,7 +323,7 @@ FLBuilder::register_module(
 						),
 						'heading_margin'     => array(
 							'type'       => 'dimension',
-							'label'      => __( 'Heading Margin', 'pmpro-bb' ),
+							'label'      => __( 'Heading Margin', 'pmpro-for-bb' ),
 							'responsive' => true,
 							'preview'    => array(
 								'type'     => 'css',
@@ -334,7 +334,7 @@ FLBuilder::register_module(
 						),
 						'heading_typography' => array(
 							'type'       => 'typography',
-							'label'      => __( 'Heading Typography', 'pmpro-bb' ),
+							'label'      => __( 'Heading Typography', 'pmpro-for-bb' ),
 							'responsive' => true,
 							'preview'    => array(
 								'type'     => 'css',
@@ -344,11 +344,11 @@ FLBuilder::register_module(
 					),
 				),
 				'intro'     => array(
-					'title'  => __( 'Introduction', 'pmpro-bb' ),
+					'title'  => __( 'Introduction', 'pmpro-for-bb' ),
 					'fields' => array(
 						'intro_color'      => array(
 							'type'       => 'color',
-							'label'      => __( 'Intro Text Color', 'pmpro-bb' ),
+							'label'      => __( 'Intro Text Color', 'pmpro-for-bb' ),
 							'show_alpha' => true,
 							'show_reset' => true,
 							'preview'    => array(
@@ -359,7 +359,7 @@ FLBuilder::register_module(
 						),
 						'intro_padding'    => array(
 							'type'       => 'dimension',
-							'label'      => __( 'Intro Padding', 'pmpro-bb' ),
+							'label'      => __( 'Intro Padding', 'pmpro-for-bb' ),
 							'responsive' => true,
 							'preview'    => array(
 								'type'     => 'css',
@@ -370,7 +370,7 @@ FLBuilder::register_module(
 						),
 						'intro_margin'     => array(
 							'type'       => 'dimension',
-							'label'      => __( 'Intro Margin', 'pmpro-bb' ),
+							'label'      => __( 'Intro Margin', 'pmpro-for-bb' ),
 							'responsive' => true,
 							'preview'    => array(
 								'type'     => 'css',
@@ -381,7 +381,7 @@ FLBuilder::register_module(
 						),
 						'intro_typography' => array(
 							'type'       => 'typography',
-							'label'      => __( 'Intro Typography', 'pmpro-bb' ),
+							'label'      => __( 'Intro Typography', 'pmpro-for-bb' ),
 							'responsive' => true,
 							'preview'    => array(
 								'type'     => 'css',
@@ -391,11 +391,11 @@ FLBuilder::register_module(
 					),
 				),
 				'password'  => array(
-					'title'  => __( 'Password Strength', 'pmpro-bb' ),
+					'title'  => __( 'Password Strength', 'pmpro-for-bb' ),
 					'fields' => array(
 						'password_info_text_color' => array(
 							'type'       => 'color',
-							'label'      => __( 'Info Text Color', 'pmpro-bb' ),
+							'label'      => __( 'Info Text Color', 'pmpro-for-bb' ),
 							'show_alpha' => true,
 							'show_reset' => true,
 							'preview'    => array(
@@ -406,7 +406,7 @@ FLBuilder::register_module(
 						),
 						'password_info_padding'    => array(
 							'type'       => 'dimension',
-							'label'      => __( 'Info Padding', 'pmpro-bb' ),
+							'label'      => __( 'Info Padding', 'pmpro-for-bb' ),
 							'responsive' => true,
 							'preview'    => array(
 								'type'     => 'css',
@@ -417,7 +417,7 @@ FLBuilder::register_module(
 						),
 						'password_info_margin'     => array(
 							'type'       => 'dimension',
-							'label'      => __( 'Info Margin', 'pmpro-bb' ),
+							'label'      => __( 'Info Margin', 'pmpro-for-bb' ),
 							'responsive' => true,
 							'preview'    => array(
 								'type'     => 'css',
@@ -428,7 +428,7 @@ FLBuilder::register_module(
 						),
 						'password_info_typography' => array(
 							'type'       => 'typography',
-							'label'      => __( 'Info Typography', 'pmpro-bb' ),
+							'label'      => __( 'Info Typography', 'pmpro-for-bb' ),
 							'responsive' => true,
 							'preview'    => array(
 								'type'     => 'css',
@@ -440,28 +440,28 @@ FLBuilder::register_module(
 			),
 		),
 		'form_settings' => array(
-			'title'    => __( 'Form Settings', 'pmpro-bb' ),
+			'title'    => __( 'Form Settings', 'pmpro-for-bb' ),
 			'sections' => array(
 				'preview' => array(
-					'title'  => __( 'Preview', 'pmpro-bb' ),
+					'title'  => __( 'Preview', 'pmpro-for-bb' ),
 					'fields' => array(
 						'login_preview' => array(
 							'type'    => 'select',
-							'label'   => __( 'Preview Login Form?', 'pmpro-bb' ),
+							'label'   => __( 'Preview Login Form?', 'pmpro-for-bb' ),
 							'options' => array(
-								'no'  => __( 'No', 'pmpro-bb' ),
-								'yes' => __( 'Yes', 'pmpro-bb' ),
+								'no'  => __( 'No', 'pmpro-for-bb' ),
+								'yes' => __( 'Yes', 'pmpro-for-bb' ),
 							),
-							'help'    => __( 'Switch between what a logged in user sees and what a logged out user sees. Helpful for styling.', 'pmpro-bb' ),
+							'help'    => __( 'Switch between what a logged in user sees and what a logged out user sees. Helpful for styling.', 'pmpro-for-bb' ),
 						),
 					),
 				),
 				'labels'  => array(
-					'title'  => __( 'Form Labels', 'pmpro-bb' ),
+					'title'  => __( 'Form Labels', 'pmpro-for-bb' ),
 					'fields' => array(
 						'label_margin'     => array(
 							'type'       => 'dimension',
-							'label'      => __( 'Label Margin', 'pmpro-bb' ),
+							'label'      => __( 'Label Margin', 'pmpro-for-bb' ),
 							'responsive' => true,
 							'preview'    => array(
 								'type'     => 'css',
@@ -471,7 +471,7 @@ FLBuilder::register_module(
 						),
 						'label_text_color' => array(
 							'type'       => 'color',
-							'label'      => __( 'Label Text Color', 'pmpro-bb' ),
+							'label'      => __( 'Label Text Color', 'pmpro-for-bb' ),
 							'show_alpha' => true,
 							'show_reset' => true,
 							'preview'    => array(
@@ -482,7 +482,7 @@ FLBuilder::register_module(
 						),
 						'label_typography' => array(
 							'type'    => 'typography',
-							'label'   => __( 'Label Typography', 'pmpro-bb' ),
+							'label'   => __( 'Label Typography', 'pmpro-for-bb' ),
 							'preview' => array(
 								'type'     => 'css',
 								'selector' => 'label',
@@ -491,11 +491,11 @@ FLBuilder::register_module(
 					),
 				),
 				'inputs'  => array(
-					'title'  => __( 'Form Inputs', 'pmpro-bb' ),
+					'title'  => __( 'Form Inputs', 'pmpro-for-bb' ),
 					'fields' => array(
 						'input_width'             => array(
 							'type'         => 'unit',
-							'label'        => __( 'Input Width', 'pmpro-bb' ),
+							'label'        => __( 'Input Width', 'pmpro-for-bb' ),
 							'units'        => array( 'px', 'vw', '%' ),
 							'default_unit' => 'px',
 							'preview'      => array(
@@ -508,7 +508,7 @@ FLBuilder::register_module(
 						),
 						'input_padding'           => array(
 							'type'       => 'dimension',
-							'label'      => __( 'Input Padding', 'pmpro-bb' ),
+							'label'      => __( 'Input Padding', 'pmpro-for-bb' ),
 							'responsive' => true,
 							'preview'    => array(
 								'type'     => 'css',
@@ -518,7 +518,7 @@ FLBuilder::register_module(
 						),
 						'input_text_color'        => array(
 							'type'       => 'color',
-							'label'      => __( 'Text Color', 'pmpro-bb' ),
+							'label'      => __( 'Text Color', 'pmpro-for-bb' ),
 							'show_alpha' => true,
 							'show_reset' => true,
 							'preview'    => array(
@@ -529,7 +529,7 @@ FLBuilder::register_module(
 						),
 						'input_placeholder_color' => array(
 							'type'       => 'color',
-							'label'      => __( 'Placeholder Color', 'pmpro-bb' ),
+							'label'      => __( 'Placeholder Color', 'pmpro-for-bb' ),
 							'show_alpha' => true,
 							'show_reset' => true,
 							'preview'    => array(
@@ -541,7 +541,7 @@ FLBuilder::register_module(
 						),
 						'input_background_color'  => array(
 							'type'       => 'color',
-							'label'      => __( 'Background Color', 'pmpro-bb' ),
+							'label'      => __( 'Background Color', 'pmpro-for-bb' ),
 							'show_alpha' => true,
 							'show_reset' => true,
 							'preview'    => array(
@@ -552,7 +552,7 @@ FLBuilder::register_module(
 						),
 						'input_border'            => array(
 							'type'    => 'border',
-							'label'   => __( 'Input Border', 'pmpro-bb' ),
+							'label'   => __( 'Input Border', 'pmpro-for-bb' ),
 							'preview' => array(
 								'type'     => 'css',
 								'selector' => 'input:not([disabled]):not([type="submit"])',
@@ -561,7 +561,7 @@ FLBuilder::register_module(
 						),
 						'input_typography'        => array(
 							'type'    => 'typography',
-							'label'   => __( 'Input Typography', 'pmpro-bb' ),
+							'label'   => __( 'Input Typography', 'pmpro-for-bb' ),
 							'preview' => array(
 								'type'     => 'css',
 								'selector' => 'input:not([disabled]):not([type="submit"])',
@@ -569,7 +569,7 @@ FLBuilder::register_module(
 						),
 						'placeholder_typography'  => array(
 							'type'    => 'typography',
-							'label'   => __( 'Input Placeholder Typography', 'pmpro-bb' ),
+							'label'   => __( 'Input Placeholder Typography', 'pmpro-for-bb' ),
 							'preview' => array(
 								'type'     => 'css',
 								'selector' => 'input:not([disabled]):not([type="submit"])::placeholder',
@@ -580,14 +580,14 @@ FLBuilder::register_module(
 			),
 		),
 		'button'        => array(
-			'title'    => __( 'Button', 'pmpro-bb' ),
+			'title'    => __( 'Button', 'pmpro-for-bb' ),
 			'sections' => array(
 				'styles' => array(
-					'title'  => __( 'Button', 'pmpro-bb' ),
+					'title'  => __( 'Button', 'pmpro-for-bb' ),
 					'fields' => array(
 						'button_width'                  => array(
 							'type'         => 'unit',
-							'label'        => __( 'Button Width', 'pmpro-bb' ),
+							'label'        => __( 'Button Width', 'pmpro-for-bb' ),
 							'units'        => array( 'px', 'vw', '%' ),
 							'default_unit' => 'px',
 							'preview'      => array(
@@ -600,7 +600,7 @@ FLBuilder::register_module(
 						),
 						'button_align'                  => array(
 							'type'    => 'align',
-							'label'   => __( 'Button Alignment', 'pmpro-bb' ),
+							'label'   => __( 'Button Alignment', 'pmpro-for-bb' ),
 							'default' => 'right',
 							'preview' => array(
 								'type'     => 'css',
@@ -610,7 +610,7 @@ FLBuilder::register_module(
 						),
 						'button_typography'             => array(
 							'type'    => 'typography',
-							'label'   => __( 'Button Typography', 'pmpro-bb' ),
+							'label'   => __( 'Button Typography', 'pmpro-for-bb' ),
 							'preview' => array(
 								'type'     => 'css',
 								'selector' => '.pmpro_btn-submit-checkout',
@@ -618,7 +618,7 @@ FLBuilder::register_module(
 						),
 						'button_text_color'             => array(
 							'type'       => 'color',
-							'label'      => __( 'Button Text Color', 'pmpro-bb' ),
+							'label'      => __( 'Button Text Color', 'pmpro-for-bb' ),
 							'show_alpha' => true,
 							'show_reset' => true,
 							'preview'    => array(
@@ -629,7 +629,7 @@ FLBuilder::register_module(
 						),
 						'button_text_color_hover'       => array(
 							'type'       => 'color',
-							'label'      => __( 'Button Text Color on Hover', 'pmpro-bb' ),
+							'label'      => __( 'Button Text Color on Hover', 'pmpro-for-bb' ),
 							'show_alpha' => true,
 							'show_reset' => true,
 							'preview'    => array(
@@ -640,7 +640,7 @@ FLBuilder::register_module(
 						),
 						'button_background_color'       => array(
 							'type'       => 'color',
-							'label'      => __( 'Button Background Color', 'pmpro-bb' ),
+							'label'      => __( 'Button Background Color', 'pmpro-for-bb' ),
 							'show_alpha' => true,
 							'show_reset' => true,
 							'preview'    => array(
@@ -651,7 +651,7 @@ FLBuilder::register_module(
 						),
 						'button_background_color_hover' => array(
 							'type'       => 'color',
-							'label'      => __( 'Button Background Color on Hover', 'pmpro-bb' ),
+							'label'      => __( 'Button Background Color on Hover', 'pmpro-for-bb' ),
 							'show_alpha' => true,
 							'show_reset' => true,
 							'preview'    => array(
@@ -662,7 +662,7 @@ FLBuilder::register_module(
 						),
 						'button_border'                 => array(
 							'type'    => 'border',
-							'label'   => __( 'Button Border', 'pmpro-bb' ),
+							'label'   => __( 'Button Border', 'pmpro-for-bb' ),
 							'preview' => array(
 								'type'     => 'css',
 								'selector' => '.pmpro_btn-submit-checkout',
@@ -671,7 +671,7 @@ FLBuilder::register_module(
 						),
 						'button_border_hover'           => array(
 							'type'    => 'border',
-							'label'   => __( 'Button Border on Hover', 'pmpro-bb' ),
+							'label'   => __( 'Button Border on Hover', 'pmpro-for-bb' ),
 							'preview' => array(
 								'type'     => 'css',
 								'selector' => '.pmpro_btn-submit-checkout:hover',
@@ -680,7 +680,7 @@ FLBuilder::register_module(
 						),
 						'button_padding'                => array(
 							'type'    => 'dimension',
-							'label'   => __( 'Button Padding', 'pmpro-bb' ),
+							'label'   => __( 'Button Padding', 'pmpro-for-bb' ),
 							'preview' => array(
 								'type'     => 'css',
 								'selector' => '.pmpro_btn-submit-checkout',
@@ -693,14 +693,14 @@ FLBuilder::register_module(
 			),
 		),
 		'login'         => array(
-			'title'    => __( 'Login', 'pmpro-bb' ),
+			'title'    => __( 'Login', 'pmpro-for-bb' ),
 			'sections' => array(
 				'styles' => array(
-					'title'  => __( 'Login Button', 'pmpro-bb' ),
+					'title'  => __( 'Login Button', 'pmpro-for-bb' ),
 					'fields' => array(
 						'login_button_width'            => array(
 							'type'         => 'unit',
-							'label'        => __( 'Button Width', 'pmpro-bb' ),
+							'label'        => __( 'Button Width', 'pmpro-for-bb' ),
 							'units'        => array( 'px', 'vw', '%' ),
 							'default_unit' => 'px',
 							'preview'      => array(
@@ -713,7 +713,7 @@ FLBuilder::register_module(
 						),
 						'login_button_align'            => array(
 							'type'    => 'align',
-							'label'   => __( 'Button Alignment', 'pmpro-bb' ),
+							'label'   => __( 'Button Alignment', 'pmpro-for-bb' ),
 							'default' => 'right',
 							'preview' => array(
 								'type'      => 'css',
@@ -724,7 +724,7 @@ FLBuilder::register_module(
 						),
 						'login_button_typography'       => array(
 							'type'    => 'typography',
-							'label'   => __( 'Button Typography', 'pmpro-bb' ),
+							'label'   => __( 'Button Typography', 'pmpro-for-bb' ),
 							'preview' => array(
 								'type'     => 'css',
 								'selector' => '.login-link a',
@@ -732,7 +732,7 @@ FLBuilder::register_module(
 						),
 						'login_button_text_color'       => array(
 							'type'       => 'color',
-							'label'      => __( 'Button Text Color', 'pmpro-bb' ),
+							'label'      => __( 'Button Text Color', 'pmpro-for-bb' ),
 							'show_alpha' => true,
 							'show_reset' => true,
 							'preview'    => array(
@@ -743,7 +743,7 @@ FLBuilder::register_module(
 						),
 						'login_button_text_color_hover' => array(
 							'type'       => 'color',
-							'label'      => __( 'Button Text Color on Hover', 'pmpro-bb' ),
+							'label'      => __( 'Button Text Color on Hover', 'pmpro-for-bb' ),
 							'show_alpha' => true,
 							'show_reset' => true,
 							'preview'    => array(
@@ -754,7 +754,7 @@ FLBuilder::register_module(
 						),
 						'login_button_background_color' => array(
 							'type'       => 'color',
-							'label'      => __( 'Button Background Color', 'pmpro-bb' ),
+							'label'      => __( 'Button Background Color', 'pmpro-for-bb' ),
 							'show_alpha' => true,
 							'show_reset' => true,
 							'preview'    => array(
@@ -765,7 +765,7 @@ FLBuilder::register_module(
 						),
 						'login_button_background_color_hover' => array(
 							'type'       => 'color',
-							'label'      => __( 'Button Background Color on Hover', 'pmpro-bb' ),
+							'label'      => __( 'Button Background Color on Hover', 'pmpro-for-bb' ),
 							'show_alpha' => true,
 							'show_reset' => true,
 							'preview'    => array(
@@ -776,7 +776,7 @@ FLBuilder::register_module(
 						),
 						'login_button_border'           => array(
 							'type'    => 'border',
-							'label'   => __( 'Button Border', 'pmpro-bb' ),
+							'label'   => __( 'Button Border', 'pmpro-for-bb' ),
 							'preview' => array(
 								'type'     => 'css',
 								'selector' => '.login-link a',
@@ -785,7 +785,7 @@ FLBuilder::register_module(
 						),
 						'login_button_border_hover'     => array(
 							'type'    => 'border',
-							'label'   => __( 'Button Border on Hover', 'pmpro-bb' ),
+							'label'   => __( 'Button Border on Hover', 'pmpro-for-bb' ),
 							'preview' => array(
 								'type'     => 'css',
 								'selector' => '.login-link a:hover',
@@ -794,7 +794,7 @@ FLBuilder::register_module(
 						),
 						'login_button_padding'          => array(
 							'type'    => 'dimension',
-							'label'   => __( 'Button Padding', 'pmpro-bb' ),
+							'label'   => __( 'Button Padding', 'pmpro-for-bb' ),
 							'preview' => array(
 								'type'     => 'css',
 								'selector' => '.login-link a',
