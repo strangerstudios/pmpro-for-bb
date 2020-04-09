@@ -112,10 +112,50 @@ FLBuilder::register_module(
 									array(
 										'selector' => '.pmpro_membership_card-data',
 									),
-								),
-								'rules' => array(
 									array(
 										'selector' => '.pmpro_membership_card-data p',
+									),
+									array(
+										'selector' => '.pmpro_membership_card-data ul',
+									),
+								),
+							),
+							'responsive' => true,
+						),
+						'background_color' => array(
+							'type' => 'color',
+							'label' => __( 'Background Color', 'pmpro-for-bb' ),
+							'show_alpha' => true,
+							'show_reset' => true,
+							'preview' => array(
+								'type'  => 'css',
+								'rules' => array(
+									array(
+										'selector' => '.pmpro_membership_card-print',
+										'property' => 'background',
+									),
+								),
+							),
+						),
+						'text_color' => array(
+							'type' => 'color',
+							'label' => __( 'Text Color', 'pmpro-for-bb' ),
+							'show_alpha' => true,
+							'show_reset' => true,
+							'preview' => array(
+								'type'  => 'css',
+								'rules' => array(
+									array(
+										'selector' => '.pmpro_membership_card-data',
+										'property' => 'color',
+									),
+									array(
+										'selector' => '.pmpro_membership_card-data p',
+										'property' => 'color',
+									),
+									array(
+										'selector' => '.pmpro_membership_card-data ul',
+										'property' => 'color',
 									),
 								),
 							),

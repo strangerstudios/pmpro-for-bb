@@ -26,19 +26,29 @@ if ( 'no' === $settings->display_featured_image ) :
 	<?php
 endif;
 
-if ( 'regular' === $settings->table_width ) {
-	?>
-	.fl-node-<?php echo esc_html( $id ); ?> .pmpro-bb-levels-wrapper table {
-		margin: <?php echo esc_html( $settings->table_align ); ?>;
-	}
-	<?php
-} else {
-	?>
-	.fl-node-<?php echo esc_html( $id ); ?> .pmpro-bb-levels-wrapper table {
-		width: 100%;
-	}
-	<?php
-}
+// Overall Typography
+FLBuilderCSS::typography_field_rule(
+	array(
+		'settings'     => $settings,
+		'setting_name' => 'typography',
+		'selector'     => ".fl-node-$id .pmpro_membership_card-data, .fl-node-$id .pmpro_membership_card-data p, .fl-node-$id .pmpro_membership_card-data ul",
+	)
+);
+
+// Overall Colors
+FLBuilderCSS::rule( array(
+	'selector' => ".fl-node-$id .pmpro_membership_card-print",
+	'props'    => array(
+		'background-color' => $settings->background_color,
+	),
+) );
+FLBuilderCSS::rule( array(
+	'selector' => ".fl-node-$id .pmpro_membership_card-data, .fl-node-$id .pmpro_membership_card-data p, .fl-node-$id .pmpro_membership_card-data ul",
+	'props'    => array(
+		'color' => $settings->text_color,
+	),
+) );
+
 FLBuilderCSS::border_field_rule(
 	array(
 		'settings'     => $settings,
@@ -47,19 +57,6 @@ FLBuilderCSS::border_field_rule(
 	)
 );
 
-// Table heading styles.
-FLBuilderCSS::rule( array(
-	'selector' => ".fl-node-$id .pmpro-bb-levels-wrapper thead tr",
-	'props'    => array(
-		'background-color' => $settings->table_heading_background_color,
-	),
-) );
-FLBuilderCSS::rule( array(
-	'selector' => ".fl-node-$id .pmpro-bb-levels-wrapper thead tr th",
-	'props'    => array(
-		'color' => $settings->table_heading_text_color,
-	),
-) );
 FLBuilderCSS::dimension_field_rule(
 	array(
 		'settings'     => $settings,
