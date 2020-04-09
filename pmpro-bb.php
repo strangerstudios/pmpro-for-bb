@@ -63,6 +63,12 @@ class PMPRO_BB {
 				require 'modules/signup/pmpro-signup.php';
 				new PMPRO_BB_Signup_Module();
 			}
+
+			// Membership Card Module.
+			if ( function_exists( 'pmpro_membership_card_wp' ) ) {
+				require 'modules/membership-card/pmpro-membership-card.php';
+				new PMPRO_BB_Membership_Card();
+			}
 		}
 	}
 
