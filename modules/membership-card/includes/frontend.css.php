@@ -10,11 +10,11 @@
 
 // Hide print styles if applicable.
 if ( 'no' === $settings->allow_printing ) :
-?>
+	?>
 .fl-node-<?php echo esc_html( $id ); ?> .pmpro_a-print {
 	display: none;
 }
-<?php
+	<?php
 endif;
 
 // Hide featured image if applicable.
@@ -36,18 +36,62 @@ FLBuilderCSS::typography_field_rule(
 );
 
 // Overall Colors
-FLBuilderCSS::rule( array(
-	'selector' => ".fl-node-$id .pmpro_membership_card-print",
-	'props'    => array(
-		'background-color' => $settings->background_color,
-	),
-) );
-FLBuilderCSS::rule( array(
-	'selector' => ".fl-node-$id .pmpro_membership_card-data, .fl-node-$id .pmpro_membership_card-data p, .fl-node-$id .pmpro_membership_card-data ul",
-	'props'    => array(
-		'color' => $settings->text_color,
-	),
-) );
+if ( 'color' === $settings->background_type ) :
+	FLBuilderCSS::rule(
+		array(
+			'selector' => ".fl-node-$id .pmpro_membership_card-print",
+			'props'    => array(
+				'background-color' => $settings->background_color,
+			),
+		)
+	);
+endif;
+if ( 'gradient' === $settings->background_type ) :
+	?>
+	.fl-node-<?php echo esc_html( $id ); ?> .pmpro_membership_card-print {
+		background-image: <?php echo esc_html( FLBuilderColor::gradient( $settings->background_gradient ) ); ?>;
+	}
+	<?php
+endif;
+if ( 'image' === $settings->background_type ) {
+	?>
+	.fl-node-<?php echo esc_html( $id ); ?> .pmpro_membership_card-print {
+		position: relative;
+		background-image: url(<?php echo esc_url( $settings->background_image_src ); ?>);
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
+	.fl-node-<?php echo esc_html( $id ); ?> .pmpro_membership_card-print:before {
+		content: '';
+		display: block;
+		z-index: 1;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background: red;
+	}
+	.fl-node-<?php echo esc_html( $id ); ?> .pmpro_membership_card-inner {
+		position: relative;
+		z-index: 2;
+	}
+	<?php
+	FLBuilderCSS::rule(
+		array(
+			'selector' => ".fl-node-$id .pmpro_membership_card-print:before",
+			'props'    => array(
+				'background-color' => $settings->background_overlay,
+			),
+		)
+	);
+}
+FLBuilderCSS::rule(
+	array(
+		'selector' => ".fl-node-$id .pmpro_membership_card-data, .fl-node-$id .pmpro_membership_card-data p, .fl-node-$id .pmpro_membership_card-data ul",
+		'props'    => array(
+			'color' => $settings->text_color,
+		),
+	)
+);
 
 FLBuilderCSS::border_field_rule(
 	array(
@@ -86,104 +130,3 @@ FLBuilderCSS::border_field_rule(
 	)
 );
 
-// Table Body.
-FLBuilderCSS::rule( array(
-	'selector' => ".fl-node-$id .pmpro-bb-levels-wrapper tbody tr.odd",
-	'props'    => array(
-		'background-color' => $settings->odd_background_color,
-	),
-) );
-FLBuilderCSS::rule( array(
-	'selector' => ".fl-node-$id .pmpro-bb-levels-wrapper tbody tr:not(.odd)",
-	'props'    => array(
-		'background-color' => $settings->even_background_color,
-	),
-) );
-FLBuilderCSS::rule( array(
-	'selector' => ".fl-node-$id .pmpro-bb-levels-wrapper tbody tr.active",
-	'props'    => array(
-		'background-color' => $settings->active_background_color,
-	),
-) );
-FLBuilderCSS::dimension_field_rule(
-	array(
-		'settings'     => $settings,
-		'setting_name' => 'tbody_padding',
-		'selector'     => ".fl-node-$id .pmpro-bb-levels-wrapper tbody tr td",
-		'unit'         => 'px',
-		'props'        => array(
-			'padding-top'    => 'tbody_padding_top',
-			'padding-right'  => 'tbody_padding_right',
-			'padding-bottom' => 'tbody_padding_bottom',
-			'padding-left'   => 'tbody_padding_left',
-		),
-	)
-);
-FLBuilderCSS::typography_field_rule(
-	array(
-		'settings'     => $settings,
-		'setting_name' => 'tbody_typography',
-		'selector'     => ".fl-node-$id .pmpro-bb-levels-wrapper tbody tr td",
-	)
-);
-
-// Button Styles.
-FLBuilderCSS::rule( array(
-	'selector' => ".fl-node-$id .pmpro-bb-levels-wrapper .pmpro_btn",
-	'props'    => array(
-		'background-color' => $settings->button_background_color,
-	),
-) );
-FLBuilderCSS::rule( array(
-	'selector' => ".fl-node-$id .pmpro-bb-levels-wrapper .pmpro_btn:hover",
-	'props'    => array(
-		'background-color' => $settings->button_background_color_hover,
-	),
-) );
-FLBuilderCSS::rule( array(
-	'selector' => ".fl-node-$id .pmpro-bb-levels-wrapper .pmpro_btn",
-	'props'    => array(
-		'color' => $settings->button_text_color,
-	),
-) );
-FLBuilderCSS::rule( array(
-	'selector' => ".fl-node-$id .pmpro-bb-levels-wrapper .pmpro_btn:hover",
-	'props'    => array(
-		'color' => $settings->button_text_color_hover,
-	),
-) );
-FLBuilderCSS::dimension_field_rule(
-	array(
-		'settings'     => $settings,
-		'setting_name' => 'button_padding',
-		'selector'     => ".fl-node-$id .pmpro-bb-levels-wrapper .pmpro_btn",
-		'unit'         => 'px',
-		'props'        => array(
-			'padding-top'    => 'button_padding_top',
-			'padding-right'  => 'button_padding_right',
-			'padding-bottom' => 'button_padding_bottom',
-			'padding-left'   => 'button_padding_left',
-		),
-	)
-);
-FLBuilderCSS::typography_field_rule(
-	array(
-		'settings'     => $settings,
-		'setting_name' => 'button_typography',
-		'selector'     => ".fl-node-$id .pmpro-bb-levels-wrapper .pmpro_btn",
-	)
-);
-FLBuilderCSS::border_field_rule(
-	array(
-		'settings'     => $settings,
-		'setting_name' => 'button_border',
-		'selector'     => ".fl-node-$id .pmpro-bb-levels-wrapper .pmpro_btn",
-	)
-);
-FLBuilderCSS::border_field_rule(
-	array(
-		'settings'     => $settings,
-		'setting_name' => 'button_border_hover',
-		'selector'     => ".fl-node-$id .pmpro-bb-levels-wrapper .pmpro_btn:hover",
-	)
-);
