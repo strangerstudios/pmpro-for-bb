@@ -54,6 +54,10 @@ class PMPRO_BB {
 			require 'modules/levels/pmpro-levels.php';
 			new PMPRO_BB_Levels_Module();
 
+			// Include checkout button module.
+			require 'modules/checkout-button/pmpro-checkout-button.php';
+			new PMPRO_BB_Checkout_Button_Module();
+
 			// Include level cards module.
 			require 'modules/level-cards/pmpro-level-cards.php';
 			new PMPRO_BB_Level_Cards_Module();
