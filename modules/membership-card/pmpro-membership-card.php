@@ -47,6 +47,15 @@ FLBuilder::register_module(
 								),
 							),
 						),
+						'allow_navigation'       => array(
+							'type'    => 'select',
+							'label'   => __( 'Allow Navigation Below the Card', 'pmpro-for-bb' ),
+							'options' => array(
+								'no'  => __( 'No', 'pmpro-for-bb' ),
+								'yes' => __( 'Yes', 'pmpro-for-bb' ),
+							),
+							'default' => 'yes',
+						),
 						'print_size'             => array(
 							'type'    => 'select',
 							'label'   => __( 'Print Size', 'pmpro-for-bb' ),
@@ -214,6 +223,16 @@ FLBuilder::register_module(
 										'property' => 'color',
 									),
 								),
+							),
+						),
+						'border'              => array(
+							'type'       => 'border',
+							'label'      => __( 'Border', 'pmpro-for-bb' ),
+							'responsive' => true,
+							'preview'    => array(
+								'type'     => 'css',
+								'selector' => '.pmpro_membership_card-print',
+								'property' => 'border',
 							),
 						),
 					),

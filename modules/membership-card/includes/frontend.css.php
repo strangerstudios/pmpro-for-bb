@@ -17,6 +17,15 @@ if ( 'no' === $settings->allow_printing ) :
 	<?php
 endif;
 
+// Hide navigation styles if applicable.
+if ( 'no' === $settings->allow_navigation ) :
+	?>
+.fl-node-<?php echo esc_html( $id ); ?> nav {
+	display: none;
+}
+	<?php
+endif;
+
 // Hide featured image if applicable.
 if ( 'no' === $settings->display_featured_image ) :
 	?>
@@ -96,37 +105,7 @@ FLBuilderCSS::rule(
 FLBuilderCSS::border_field_rule(
 	array(
 		'settings'     => $settings,
-		'setting_name' => 'table_border',
-		'selector'     => ".fl-node-$id .pmpro-bb-levels-wrapper table",
+		'setting_name' => 'border',
+		'selector'     => ".fl-node-$id .pmpro_membership_card-print",
 	)
 );
-
-FLBuilderCSS::dimension_field_rule(
-	array(
-		'settings'     => $settings,
-		'setting_name' => 'table_heading_padding',
-		'selector'     => ".fl-node-$id .pmpro-bb-levels-wrapper thead tr th",
-		'unit'         => 'px',
-		'props'        => array(
-			'padding-top'    => 'table_heading_padding_top',
-			'padding-right'  => 'table_heading_padding_right',
-			'padding-bottom' => 'table_heading_padding_bottom',
-			'padding-left'   => 'table_heading_padding_left',
-		),
-	)
-);
-FLBuilderCSS::typography_field_rule(
-	array(
-		'settings'     => $settings,
-		'setting_name' => 'table_heading_typography',
-		'selector'     => ".fl-node-$id .pmpro-bb-levels-wrapper thead tr th",
-	)
-);
-FLBuilderCSS::border_field_rule(
-	array(
-		'settings'     => $settings,
-		'setting_name' => 'table_heading_border',
-		'selector'     => ".fl-node-$id .pmpro-bb-levels-wrapper thead tr th",
-	)
-);
-
